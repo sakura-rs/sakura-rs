@@ -1,0 +1,10 @@
+http_addr = "0.0.0.0:21041"
+forbid_first_dispatch = false
+
+[region]
+enable_login_pc = true
+region_list_file = "assets/region/region_list.json"
+client_custom_config_path = "assets/region/client_custom_config.json"
+global_client_secret_key_path = "assets/region/client_secret_key.ec2b"
+encryption_config_path = "assets/region/encryption_config.json"
+cur_region_name = "dev_sakura"

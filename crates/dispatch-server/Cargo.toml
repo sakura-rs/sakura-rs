@@ -1,0 +1,26 @@
+[package]
+name = "sakura-dispatch-server"
+edition = "2021"
+version.workspace = true
+
+[dependencies]
+# Framework
+tokio.workspace = true
+axum.workspace = true
+axum-server.workspace = true
+
+# Serialization
+serde.workspace = true
+serde_json.workspace = true
+rbase64.workspace = true
+
+# Logging
+tracing.workspace = true
+
+# Error processing
+anyhow.workspace = true
+thiserror.workspace = true
+
+common.workspace = true
+sakura-proto.workspace = true
+sakura-encryption.workspace = true

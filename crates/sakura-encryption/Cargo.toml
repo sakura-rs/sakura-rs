@@ -1,0 +1,14 @@
+[package]
+name = "sakura-encryption"
+edition = "2021"
+version.workspace = true
+
+[dependencies]
+byteorder.workspace = true
+thiserror.workspace = true
+
+rand_mt.workspace = true
+rand.workspace = true
+rsa.workspace = true
+
+common.workspace = true

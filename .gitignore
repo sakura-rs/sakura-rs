@@ -1,0 +1,7 @@
+/target
+/sdk-server.toml
+/dispatch-server.toml
+/gate-server.toml
+/game-server.toml
+
+*.proto

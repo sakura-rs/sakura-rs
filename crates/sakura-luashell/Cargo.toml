@@ -1,0 +1,11 @@
+[package]
+name = "sakura-luashell"
+edition = "2021"
+version.workspace = true
+
+[dependencies]
+bevy_app.workspace = true
+bevy_ecs.workspace = true
+
+sakura-proto.workspace = true
+sakura-message.workspace = true

@@ -1,0 +1,89 @@
+[workspace]
+members = [ "crates/sakura-data", "crates/sakura-data/sakura-data-derive", "crates/sakura-database", "crates/sakura-encryption", "crates/sakura-entity", "crates/sakura-network", "crates/sakura-proto", "crates/sakura-proto/sakura-proto-derive", "crates/sakura-scene", "crates/sakura-message", "crates/common", "crates/dispatch-server", "crates/game-server", "crates/gate-server", "crates/gate-server/kcp", "crates/sdk-server", "crates/sakura-persistence", "crates/game-server-core", "crates/sakura-time", "crates/sakura-map", "crates/sakura-command", "crates/sakura-combat", "crates/sakura-luashell", "crates/sakura-environment", "crates/sakura-pathfinding", "crates/sakura-inventory", "crates/sakura-avatar"]
+resolver = "2"
+
+[workspace.package]
+version = "0.0.1"
+
+[workspace.dependencies]
+# Runtime
+tokio = { version = "1.40.0", features = ["full"] }
+futures = "0.3.31"
+axum = "0.7.7"
+axum-server = "0.7.1"
+
+# Logic
+bevy_app = { version = "0.14.2", default-features = false }
+bevy_ecs = { version = "0.14.2", default-features = false }
+bevy_derive = "0.14.2"
+bevy_hierarchy = { version = "0.14.2", default-features = false, features = ["bevy_app"] }
+
+# Serialization
+serde = { version = "1.0.210", features = ["derive"] }
+serde_json = "1.0.128"
+toml = "0.8.19"
+rbase64 = "2.0.3"
+
+prost = "0.13.3"
+prost-types = "0.13.3"
+prost-build = "0.13.3"
+
+# Error processing
+anyhow = "1.0.89"
+thiserror = "1.0.64"
+
+# Networking
+zeromq = { version = "0.4.1", features = ["tokio-runtime", "tcp-transport"] }
+
+# Cryptography
+rsa = { version = "0.9.6", features = ["sha2"] }
+rand_mt = "4.2.2"
+password-hash = { version = "0.5.0", features = ["alloc", "rand_core"] }
+pbkdf2 = { version = "0.12.2", features = ["simple"] }
+
+# Database
+sqlx = { version = "0.8.2", features = ["postgres", "runtime-tokio-rustls"] }
+
+# Encoding
+byteorder = "1.5.0"
+varint-rs = "2.2.0"
+
+# Util
+paste = "1.0.15"
+rand = "0.8.5"
+regex = "1.11.0"
+hex = "0.4.3"
+num_enum = "0.7.3"
+dashmap = "6.1.0"
+
+# Logging
+tracing = "0.1.40"
+tracing-subscriber = "0.3.18"
+
+# Internal
+common = { path = "crates/common" }
+sakura-data = { path = "crates/sakura-data" }
+sakura-network = { path = "crates/sakura-network" }
+sakura-database = { path = "crates/sakura-database" }
+sakura-encryption = { path = "crates/sakura-encryption" }
+sakura-proto = { path = "crates/sakura-proto" }
+sakura-entity = { path = "crates/sakura-entity" }
+sakura-avatar = { path = "crates/sakura-avatar" }
+sakura-scene = { path = "crates/sakura-scene" }
+sakura-environment = { path = "crates/sakura-environment" }
+sakura-pathfinding = { path = "crates/sakura-pathfinding" }
+sakura-combat = { path = "crates/sakura-combat" }
+sakura-time = { path = "crates/sakura-time" }
+sakura-map = { path = "crates/sakura-map" }
+sakura-inventory = { path = "crates/sakura-inventory" }
+sakura-command = { path = "crates/sakura-command" }
+sakura-message = { path = "crates/sakura-message" }
+sakura-persistence = { path = "crates/sakura-persistence" }
+sakura-luashell = { path = "crates/sakura-luashell" }
+game-server-core = { path = "crates/game-server-core" }
+
+[profile.release]
+strip = true      # Automatically strip symbols from the binary.
+lto = true        # Link-time optimization.
+opt-level = 3     # Optimize for speed.
+codegen-units = 1 # Maximum size reduction optimizations.

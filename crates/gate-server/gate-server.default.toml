@@ -1,0 +1,14 @@
+cur_region_name = "dev_sakura"
+region_list_path = "assets/region/region_list.json"
+encryption_config_path = "assets/region/encryption_config.json"
+service_listen_addr = "127.0.0.1:10001"
+game_server_addr = "127.0.0.1:10002"
+
+[network]
+udp_host = "0.0.0.0:22101"
+
+[database]
+host = "localhost:5432"
+user_name = "postgres"
+password = ""
+db_name = "sakura"

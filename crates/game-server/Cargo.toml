@@ -1,0 +1,41 @@
+[package]
+name = "sakura-game-server"
+edition = "2021"
+version.workspace = true
+
+[dependencies]
+# Runtime
+tokio.workspace = true
+
+# Logic
+bevy_app.workspace = true
+bevy_ecs.workspace = true
+bevy_derive.workspace = true
+
+# Error processing
+thiserror.workspace = true
+anyhow.workspace = true
+
+# Serialization
+serde.workspace = true
+serde_json.workspace = true
+
+# Logging
+tracing.workspace = true
+
+# Util
+hex.workspace = true
+byteorder.workspace = true
+dashmap.workspace = true
+rand.workspace = true
+paste.workspace = true
+
+# Internal
+common.workspace = true
+game-server-core.workspace = true
+sakura-database.workspace = true
+sakura-message.workspace = true
+sakura-persistence.workspace = true
+sakura-data.workspace = true
+sakura-network.workspace = true
+sakura-proto.workspace = true

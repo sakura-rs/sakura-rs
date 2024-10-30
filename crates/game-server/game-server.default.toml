@@ -1,0 +1,8 @@
+service_listen_addr = "127.0.0.1:10002"
+gate_server_addr = "127.0.0.1:10001"
+
+[database]
+host = "localhost:5432"
+user_name = "postgres"
+password = ""
+db_name = "sakura"

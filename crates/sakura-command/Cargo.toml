@@ -1,0 +1,15 @@
+[package]
+name = "sakura-command"
+edition = "2021"
+version.workspace = true
+
+[dependencies]
+bevy_app.workspace = true
+bevy_ecs.workspace = true
+tracing.workspace = true
+rand.workspace = true
+
+sakura-data.workspace = true
+sakura-scene.workspace = true
+sakura-entity.workspace = true
+sakura-persistence.workspace = true

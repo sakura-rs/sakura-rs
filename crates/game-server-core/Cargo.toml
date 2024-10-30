@@ -1,0 +1,40 @@
+[package]
+name = "game-server-core"
+edition = "2021"
+version.workspace = true
+
+[dependencies]
+tokio.workspace = true
+
+# Logic
+bevy_app.workspace = true
+bevy_ecs.workspace = true
+bevy_derive.workspace = true
+
+# Serialization
+serde.workspace = true
+serde_json.workspace = true
+
+# Error processing
+thiserror.workspace = true
+
+# Logging
+tracing.workspace = true
+
+# Internal
+common.workspace = true
+sakura-entity.workspace = true
+sakura-scene.workspace = true
+sakura-avatar.workspace = true
+sakura-environment.workspace = true
+sakura-pathfinding.workspace = true
+sakura-combat.workspace = true
+sakura-time.workspace = true
+sakura-command.workspace = true
+sakura-map.workspace = true
+sakura-inventory.workspace = true
+sakura-message.workspace = true
+sakura-persistence.workspace = true
+sakura-luashell.workspace = true
+sakura-data.workspace = true
+sakura-proto.workspace = true

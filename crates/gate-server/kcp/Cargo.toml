@@ -1,0 +1,15 @@
+[package]
+name = "kcp"
+version.workspace = true
+edition = "2021"
+
+[features]
+tokio = ["dep:tokio"]
+
+[dependencies]
+tokio = { workspace = true, optional = true }
+thiserror.workspace = true
+tracing.workspace = true
+
+bytes = "1.7.2"
+xxhash-rust = { version = "0.8.12", features = ["xxh3"] }
