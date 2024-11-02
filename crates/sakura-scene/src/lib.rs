@@ -8,6 +8,7 @@ use common::{
     CurrentSceneID, PlayerSceneState, PlayerSceneStates, ScenePeerManager, WorldOwnerUID,
 };
 use enter::EnterSceneStateSystems;
+use player_join_team::PlayerJoinTeamEvent;
 use sakura_entity::{
     ability::Ability,
     avatar::AvatarQueryReadOnly,
@@ -21,7 +22,6 @@ use sakura_entity::{
 use sakura_message::output::MessageOutput;
 use sakura_persistence::Players;
 use sakura_proto::{EnterType, ProtEntityType};
-use player_join_team::PlayerJoinTeamEvent;
 use scene_team_update::SceneTeamUpdateEvent;
 
 pub use enter::{
@@ -104,13 +104,13 @@ fn init_scene(
 ) {
     commands.spawn(TeamEntityBundle {
         marker: TeamEntityMarker,
-        entity_id: to_protocol_entity_id(ProtEntityType::Team, entity_counter.next()),
+        entity_id: to_protocol_entity_id(ProtEntityType::Team, entity_counter.inc()),
         ability: Ability::new_for_team(),
     });
 
     commands.spawn(MpLevelBundle {
         authority_peer_id: AuthorityPeerId(1),
-        entity_id: to_protocol_entity_id(ProtEntityType::MpLevel, entity_counter.next()),
+        entity_id: to_protocol_entity_id(ProtEntityType::MpLevel, entity_counter.inc()),
         marker: MpLevelEntityMarker,
     });
 
@@ -165,7 +165,7 @@ fn create_play_team_entity(
                 player_uid: OwnerPlayerUID(event.uid),
                 entity_id: to_protocol_entity_id(
                     ProtEntityType::PlayTeamEntity,
-                    entity_counter.next(),
+                    entity_counter.inc(),
                 ),
                 ability: Ability::default(),
                 marker: PlayTeamEntityMarker,
@@ -190,7 +190,7 @@ fn notify_player_enter_scene(
                     .unwrap()
                     .enter_scene_token(),
                 target_uid: event.uid,
-                pos: Some(event.position.clone().into()),
+                pos: Some(event.position.into()),
                 prev_pos: Some(Default::default()),
                 scene_transaction: format!(
                     "{}-{}-{}-{}",

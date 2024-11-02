@@ -92,7 +92,7 @@ pub fn debug_command_handler(
                         monster_id: MonsterID(monster_id),
                         entity_id: to_protocol_entity_id(
                             ProtEntityType::Monster,
-                            entity_counter.next(),
+                            entity_counter.inc(),
                         ),
                         level: Level(level),
                         transform: Transform {

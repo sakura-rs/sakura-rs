@@ -507,7 +507,7 @@ impl<Output> Kcp<Output> {
         let count = if buf.len() <= self.mss {
             1
         } else {
-            (buf.len() + self.mss - 1) / self.mss
+            buf.len().div_ceil(self.mss)
         };
 
         if count >= KCP_WND_RCV as usize {
@@ -601,10 +601,8 @@ impl<Output> Kcp<Output> {
         for seg in &mut self.snd_buf {
             if timediff(sn, seg.sn) < 0 {
                 break;
-            } else if sn != seg.sn {
-                if timediff(ts, seg.ts) >= 0 {
-                    seg.fastack += 1;
-                }
+            } else if sn != seg.sn && timediff(ts, seg.ts) >= 0 {
+                seg.fastack += 1;
             }
         }
     }
@@ -763,11 +761,9 @@ impl<Output> Kcp<Output> {
                         flag = true;
                         max_ack = sn;
                         latest_ts = ts;
-                    } else if timediff(sn, max_ack) > 0 {
-                        if timediff(ts, latest_ts) > 0 {
-                            max_ack = sn;
-                            latest_ts = ts;
-                        }
+                    } else if timediff(sn, max_ack) > 0 && timediff(ts, latest_ts) > 0 {
+                        max_ack = sn;
+                        latest_ts = ts;
                     }
 
                     trace!(
@@ -897,7 +893,7 @@ impl<Output> Kcp<Output> {
         }
 
         let mut ts_flush = self.ts_flush;
-        let mut tm_packet = u32::max_value();
+        let mut tm_packet = u32::MAX;
 
         if timediff(current, ts_flush) >= 10000 || timediff(current, ts_flush) < -10000 {
             ts_flush = current;
@@ -1175,7 +1171,7 @@ impl<Output: Write> Kcp<Output> {
         let resent = if self.fastresend > 0 {
             self.fastresend
         } else {
-            u32::max_value()
+            u32::MAX
         };
 
         let rtomin = if !self.nodelay { self.rx_rto >> 3 } else { 0 };
@@ -1417,7 +1413,7 @@ impl<Output: AsyncWrite + Unpin + Send> Kcp<Output> {
         let resent = if self.fastresend > 0 {
             self.fastresend
         } else {
-            u32::max_value()
+            u32::MAX
         };
 
         let rtomin = if !self.nodelay { self.rx_rto >> 3 } else { 0 };

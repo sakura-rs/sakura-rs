@@ -53,6 +53,12 @@ impl PlayerSceneState {
     }
 }
 
+impl Default for PlayerSceneState {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 #[derive(Resource, Default)]
 pub struct ScenePeerManager {
     host_peer_id: u32,

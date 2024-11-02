@@ -52,7 +52,7 @@ where
             return Err(DecodeError::InputLessThanOverhead(buf.len(), OVERHEAD));
         }
 
-        if &buf[0..2] != HEAD_MAGIC {
+        if buf[0..2] != HEAD_MAGIC {
             return Err(DecodeError::HeadMagicMismatch);
         }
 
@@ -64,7 +64,7 @@ where
             return Err(DecodeError::OutOfBounds(required_len, buf.len()));
         }
 
-        if &buf[(10 + head_len + body_len)..(12 + head_len + body_len)] != TAIL_MAGIC {
+        if buf[(10 + head_len + body_len)..(12 + head_len + body_len)] != TAIL_MAGIC {
             return Err(DecodeError::TailMagicMismatch);
         }
 
@@ -81,7 +81,7 @@ where
         let encoded_len = OVERHEAD + head_len + body_len;
 
         let mut buf = vec![0u8; encoded_len];
-        (&mut buf[0..2]).copy_from_slice(&HEAD_MAGIC);
+        buf[0..2].copy_from_slice(&HEAD_MAGIC);
         BE::write_u16(&mut buf[2..4], self.body.get_cmd_id());
         BE::write_u16(&mut buf[4..6], head_len as u16);
         BE::write_u32(&mut buf[6..10], body_len as u32);
@@ -94,7 +94,7 @@ where
             .encode(&mut buf[10 + head_len..10 + head_len + body_len].as_mut())
             .unwrap();
 
-        (&mut buf[10 + head_len + body_len..12 + head_len + body_len]).copy_from_slice(&TAIL_MAGIC);
+        buf[10 + head_len + body_len..12 + head_len + body_len].copy_from_slice(&TAIL_MAGIC);
         buf.into_boxed_slice()
     }
 }
@@ -104,7 +104,7 @@ pub fn read_cmd_id(buf: &[u8]) -> Result<u16, DecodeError> {
         return Err(DecodeError::InputLessThanOverhead(buf.len(), OVERHEAD));
     }
 
-    (&buf[0..2] == HEAD_MAGIC)
+    (buf[0..2] == HEAD_MAGIC)
         .then_some(BE::read_u16(&buf[2..4]))
         .ok_or(DecodeError::HeadMagicMismatch)
 }
@@ -117,10 +117,10 @@ pub fn decode_head(buf: &[u8]) -> Option<PacketHead> {
 
 pub fn is_well_formed(buf: &[u8]) -> bool {
     buf.len() >= OVERHEAD
-        && &buf[0..2] == HEAD_MAGIC
+        && buf[0..2] == HEAD_MAGIC
         && OVERHEAD + BE::read_u16(&buf[4..6]) as usize + BE::read_u32(&buf[6..10]) as usize
             >= buf.len()
-        && &buf[10 + BE::read_u16(&buf[4..6]) as usize + BE::read_u32(&buf[6..10]) as usize..][..2]
+        && buf[10 + BE::read_u16(&buf[4..6]) as usize + BE::read_u32(&buf[6..10]) as usize..][..2]
             == TAIL_MAGIC
 }
 

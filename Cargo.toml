@@ -1,5 +1,33 @@
 [workspace]
-members = [ "crates/sakura-data", "crates/sakura-data/sakura-data-derive", "crates/sakura-database", "crates/sakura-encryption", "crates/sakura-entity", "crates/sakura-network", "crates/sakura-proto", "crates/sakura-proto/sakura-proto-derive", "crates/sakura-scene", "crates/sakura-message", "crates/common", "crates/dispatch-server", "crates/game-server", "crates/gate-server", "crates/gate-server/kcp", "crates/sdk-server", "crates/sakura-persistence", "crates/game-server-core", "crates/sakura-time", "crates/sakura-map", "crates/sakura-command", "crates/sakura-combat", "crates/sakura-luashell", "crates/sakura-environment", "crates/sakura-pathfinding", "crates/sakura-inventory", "crates/sakura-avatar"]
+members = [
+	"crates/sakura-data",
+	"crates/sakura-data/sakura-data-derive",
+	"crates/sakura-database",
+	"crates/sakura-encryption",
+	"crates/sakura-entity",
+	"crates/sakura-network",
+	"crates/sakura-proto",
+	"crates/sakura-proto/sakura-proto-derive",
+	"crates/sakura-scene",
+	"crates/sakura-message",
+	"crates/common",
+	"crates/dispatch-server",
+	"crates/game-server",
+	"crates/gate-server",
+	"crates/gate-server/kcp",
+	"crates/sdk-server",
+	"crates/sakura-persistence",
+	"crates/game-server-core",
+	"crates/sakura-time",
+	"crates/sakura-map",
+	"crates/sakura-command",
+	"crates/sakura-combat",
+	"crates/sakura-luashell",
+	"crates/sakura-environment",
+	"crates/sakura-pathfinding",
+	"crates/sakura-inventory",
+	"crates/sakura-avatar",
+]
 resolver = "2"
 
 [workspace.package]
@@ -16,7 +44,9 @@ axum-server = "0.7.1"
 bevy_app = { version = "0.14.2", default-features = false }
 bevy_ecs = { version = "0.14.2", default-features = false }
 bevy_derive = "0.14.2"
-bevy_hierarchy = { version = "0.14.2", default-features = false, features = ["bevy_app"] }
+bevy_hierarchy = { version = "0.14.2", default-features = false, features = [
+	"bevy_app",
+] }
 
 # Serialization
 serde = { version = "1.0.210", features = ["derive"] }
@@ -81,6 +111,49 @@ sakura-message = { path = "crates/sakura-message" }
 sakura-persistence = { path = "crates/sakura-persistence" }
 sakura-luashell = { path = "crates/sakura-luashell" }
 game-server-core = { path = "crates/game-server-core" }
+
+[workspace.lints.clippy]
+dbg_macro = "deny"
+todo = "deny"
+pedantic = { level = "warn", priority = -1 }
+nursery = { level = "warn", priority = -1 }
+cargo = { level = "warn", priority = -1 }
+
+branches_sharing_code = "allow"
+cast_lossless = "allow"
+cast_possible_truncation = "allow"
+cast_possible_wrap = "allow"
+cast_precision_loss = "allow"
+cast_sign_loss = "allow"
+checked_conversions = "allow"
+cognitive_complexity = "allow"
+collection_is_never_read = "allow"
+fallible_impl_from = "allow"
+fn_params_excessive_bools = "allow"
+inline_always = "allow"
+if_not_else = "allow"
+items_after_statements = "allow"
+match_wildcard_for_single_variants = "allow"
+missing_errors_doc = "allow"
+missing_panics_doc = "allow"
+module_name_repetitions = "allow"
+multiple_crate_versions = "allow"
+option_if_let_else = "allow"
+or_fun_call = "allow"
+range_plus_one = "allow"
+redundant_clone = "allow"
+redundant_closure_for_method_calls = "allow"
+ref_option = "allow"
+similar_names = "allow"
+string_lit_as_bytes = "allow"
+struct_excessive_bools = "allow"
+struct_field_names = "allow"
+transmute_undefined_repr = "allow"
+too_many_lines = "allow"
+unnecessary_wraps = "allow"
+unused_self = "allow"
+used_underscore_items = "allow"
+
 
 [profile.release]
 strip = true      # Automatically strip symbols from the binary.

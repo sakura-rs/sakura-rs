@@ -86,7 +86,7 @@ fn notify_disappear_entities(
         .read()
         .for_each(|EntityDisappearEvent(id, disappear_type)| {
             message_output.send_to_all(SceneEntityDisappearNotify {
-                disappear_type: disappear_type.clone().into(),
+                disappear_type: (*disappear_type).into(),
                 param: 0,
                 entity_list: vec![*id],
             })

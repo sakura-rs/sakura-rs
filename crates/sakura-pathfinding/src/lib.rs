@@ -32,8 +32,8 @@ fn pathfinding_packet_processor(
                 corners.push(source_pos);
             }
 
-            if let Some(destination) = request.destination_pos.get(0) {
-                corners.push(destination.clone());
+            if let Some(destination) = request.destination_pos.first() {
+                corners.push(*destination);
             }
 
             message_output.send(

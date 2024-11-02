@@ -41,7 +41,7 @@ pub fn player_join_team(
             let to_spawn = player_info
                 .avatar_module
                 .avatar_map
-                .get(&to_spawn_guid)
+                .get(to_spawn_guid)
                 .unwrap();
 
             let ItemInformation::Weapon {
@@ -60,7 +60,7 @@ pub fn player_join_team(
             let weapon_entity = commands
                 .spawn(WeaponBundle {
                     weapon_id: WeaponID(*weapon_id),
-                    entity_id: to_protocol_entity_id(ProtEntityType::Weapon, entity_counter.next()),
+                    entity_id: to_protocol_entity_id(ProtEntityType::Weapon, entity_counter.inc()),
                     level: Level(*level),
                     guid: Guid(to_spawn.weapon_guid),
                     gadget_id: GadgetID(weapon_config.gadget_id),
@@ -71,7 +71,7 @@ pub fn player_join_team(
 
             let mut avatar_entity = commands.spawn(AvatarBundle {
                 avatar_id: AvatarID(to_spawn.avatar_id),
-                entity_id: to_protocol_entity_id(ProtEntityType::Avatar, entity_counter.next()),
+                entity_id: to_protocol_entity_id(ProtEntityType::Avatar, entity_counter.inc()),
                 guid: Guid(to_spawn.guid),
                 control_peer: ControlPeer(peer_mgr.get_peer_id_by_uid(uid)),
                 skill_depot: SkillDepot(to_spawn.skill_depot_id),
@@ -90,7 +90,7 @@ pub fn player_join_team(
                 ),
                 life_state: LifeState::Alive,
                 equipment: Equipment {
-                    weapon: weapon_entity.clone(),
+                    weapon: weapon_entity,
                 },
                 transform: Transform {
                     position: player_info.world_position.position.into(),

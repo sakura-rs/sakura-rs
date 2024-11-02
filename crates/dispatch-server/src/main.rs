@@ -74,7 +74,7 @@ async fn main() -> Result<()> {
             })?;
 
         match region.secret_key_path.as_ref().map(|path| {
-            fs::read(&path).map_err(|err| {
+            fs::read(path).map_err(|err| {
                 anyhow!("failed to read region-local secret key from {path}, error: {err}")
             })
         }) {

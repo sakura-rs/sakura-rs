@@ -105,8 +105,8 @@ pub fn notify_appear_avatar_entities(
                     entity_id: avatar_data.entity_id.0,
                     name: String::new(),
                     motion_info: Some(MotionInfo {
-                        pos: Some(avatar_data.transform.position.clone().into()),
-                        rot: Some(avatar_data.transform.rotation.clone().into()),
+                        pos: Some(avatar_data.transform.position.into()),
+                        rot: Some(avatar_data.transform.rotation.into()),
                         speed: Some(Vector::default()),
                         ..Default::default()
                     }),

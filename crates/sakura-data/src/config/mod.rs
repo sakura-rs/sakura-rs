@@ -11,7 +11,7 @@ pub use avatar::*;
 use crate::FromBinary;
 
 pub fn load_configs_from_binary(bin_output_path: &str) -> std::io::Result<()> {
-    load_avatar_configs(fs::read_dir(&format!("{bin_output_path}/Avatar/"))?)?;
+    load_avatar_configs(fs::read_dir(format!("{bin_output_path}/Avatar/"))?)?;
 
     Ok(())
 }

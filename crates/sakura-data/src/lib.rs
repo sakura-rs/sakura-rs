@@ -65,7 +65,7 @@ mod tests {
     pub fn decode_avatar_config() -> std::io::Result<()> {
         // HIGHLY EXPERIMENTAL!
 
-        for p in fs::read_dir(&Path::new("../../assets/BinOutput/Avatar/")).unwrap() {
+        for p in fs::read_dir(Path::new("../../assets/BinOutput/Avatar/")).unwrap() {
             let path = p?.path();
 
             let data = fs::read(path)?;

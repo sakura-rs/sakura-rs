@@ -28,7 +28,7 @@ impl UdpServer {
         })
     }
 
-    pub async fn serve(self: Self) {
+    pub async fn serve(self) {
         let mut conn_mgr = ConnectionManager::default();
         let mut buf = [0u8; 1400];
 
@@ -156,8 +156,7 @@ impl ConnectionManager {
     pub fn get(&self, conv: u32, token: u32) -> Option<&Connection> {
         self.connections
             .get(&conv)
-            .map(|c| (c.token == token).then_some(c))
-            .flatten()
+            .and_then(|c| (c.token == token).then_some(c))
     }
 
     pub fn remove(&mut self, conv: u32, token: u32) -> Option<Connection> {

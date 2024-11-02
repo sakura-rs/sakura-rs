@@ -239,48 +239,45 @@ fn impl_proto_conversion(
     let mut normal_to_client_packet = quote! {};
 
     for item in client_file.items.iter() {
-        match item {
-            Item::Struct(client) => {
-                let ident = &client.ident;
+        if let Item::Struct(client) = item {
+            let ident = &client.ident;
 
-                if !client.attrs.iter().any(|attr| {
-                    attr.path()
-                        .get_ident()
-                        .map(|i| i == "cmdid")
-                        .unwrap_or(false)
-                }) {
-                    continue;
-                }
-
-                if normal_file.items.iter().any(|i| {
-                    if let Item::Struct(s) = i {
-                        s.ident == *ident
-                    } else {
-                        false
-                    }
-                }) {
-                    client_to_normal_packet = quote! {
-                        #client_to_normal_packet
-                        crate::client::#ident::CMD_ID => {
-                            let proto = crate::client::#ident::decode(body)?;
-                            let proto: crate::normal::#ident = proto.into();
-
-                            Ok((crate::normal::#ident::CMD_ID, proto.encode_to_vec().into_boxed_slice()))
-                        },
-                    };
-
-                    normal_to_client_packet = quote! {
-                        #normal_to_client_packet
-                        crate::normal::#ident::CMD_ID => {
-                            let proto = crate::normal::#ident::decode(body)?;
-                            let proto: crate::client::#ident = proto.into();
-
-                            Ok((crate::client::#ident::CMD_ID, proto.encode_to_vec().into_boxed_slice()))
-                        },
-                    };
-                }
+            if !client.attrs.iter().any(|attr| {
+                attr.path()
+                    .get_ident()
+                    .map(|i| i == "cmdid")
+                    .unwrap_or(false)
+            }) {
+                continue;
             }
-            &_ => (),
+
+            if normal_file.items.iter().any(|i| {
+                if let Item::Struct(s) = i {
+                    s.ident == *ident
+                } else {
+                    false
+                }
+            }) {
+                client_to_normal_packet = quote! {
+                    #client_to_normal_packet
+                    crate::client::#ident::CMD_ID => {
+                        let proto = crate::client::#ident::decode(body)?;
+                        let proto: crate::normal::#ident = proto.into();
+
+                        Ok((crate::normal::#ident::CMD_ID, proto.encode_to_vec().into_boxed_slice()))
+                    },
+                };
+
+                normal_to_client_packet = quote! {
+                    #normal_to_client_packet
+                    crate::normal::#ident::CMD_ID => {
+                        let proto = crate::normal::#ident::decode(body)?;
+                        let proto: crate::client::#ident = proto.into();
+
+                        Ok((crate::client::#ident::CMD_ID, proto.encode_to_vec().into_boxed_slice()))
+                    },
+                };
+            }
         }
     }
 
@@ -293,32 +290,28 @@ fn impl_proto_conversion(
     ]);
 
     for item in client_file.items.iter() {
-        match item {
-            Item::Struct(client) => {
-                let ident = &client.ident;
-                if let Some(combat_enum_case) = combat_invoke_names.get(ident.to_string().as_str())
-                {
-                    let case_ident = Ident::new(&combat_enum_case, ident.span());
-                    client_to_normal_combat_invocation.extend(quote! {
-                        crate::normal::CombatTypeArgument::#case_ident => {
-                            let proto = crate::client::#ident::decode(combat_data)?;
-                            let proto: crate::normal::#ident = proto.into();
+        if let Item::Struct(client) = item {
+            let ident = &client.ident;
+            if let Some(combat_enum_case) = combat_invoke_names.get(ident.to_string().as_str()) {
+                let case_ident = Ident::new(combat_enum_case, ident.span());
+                client_to_normal_combat_invocation.extend(quote! {
+                    crate::normal::CombatTypeArgument::#case_ident => {
+                        let proto = crate::client::#ident::decode(combat_data)?;
+                        let proto: crate::normal::#ident = proto.into();
 
-                            Ok(proto.encode_to_vec().into_boxed_slice())
-                        }
-                    });
+                        Ok(proto.encode_to_vec().into_boxed_slice())
+                    }
+                });
 
-                    normal_to_client_combat_invocation.extend(quote! {
-                        crate::normal::CombatTypeArgument::#case_ident => {
-                            let proto = crate::normal::#ident::decode(combat_data)?;
-                            let proto: crate::client::#ident = proto.into();
+                normal_to_client_combat_invocation.extend(quote! {
+                    crate::normal::CombatTypeArgument::#case_ident => {
+                        let proto = crate::normal::#ident::decode(combat_data)?;
+                        let proto: crate::client::#ident = proto.into();
 
-                            Ok(proto.encode_to_vec().into_boxed_slice())
-                        }
-                    });
-                }
+                        Ok(proto.encode_to_vec().into_boxed_slice())
+                    }
+                });
             }
-            &_ => (),
         }
     }
 

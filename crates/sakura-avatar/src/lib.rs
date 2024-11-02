@@ -115,7 +115,7 @@ fn apply_equip_change_to_avatar_entity(
         let weapon_entity = commands
             .spawn(WeaponBundle {
                 weapon_id: WeaponID(*weapon_id),
-                entity_id: to_protocol_entity_id(ProtEntityType::Weapon, entity_counter.next()),
+                entity_id: to_protocol_entity_id(ProtEntityType::Weapon, entity_counter.inc()),
                 level: Level(*level),
                 guid: Guid(avatar_equip_change.weapon_guid),
                 gadget_id: GadgetID(weapon_config.gadget_id),

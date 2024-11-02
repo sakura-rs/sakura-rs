@@ -6,9 +6,7 @@ use sakura_entity::{
     common::{OwnerPlayerUID, ProtocolEntityID, ToBeRemovedMarker},
 };
 use sakura_message::{event::ClientMessageEvent, output::MessageOutput};
-use sakura_proto::{
-    EvtAvatarLockChairReq, EvtAvatarLockChairRsp, EvtAvatarStandUpNotify, Retcode,
-};
+use sakura_proto::{EvtAvatarLockChairReq, EvtAvatarLockChairRsp, EvtAvatarStandUpNotify, Retcode};
 use tracing::{debug, instrument};
 
 #[derive(Resource, Default)]
@@ -29,18 +27,14 @@ pub fn avatar_lock_chair(
             let uid = message.sender_uid();
             let mut rsp = EvtAvatarLockChairRsp::default();
 
-            if lock.0.contains_key(&request.chair_id) {
-                debug!("chair with id {} is already locked", request.chair_id);
-                rsp.retcode = Retcode::RetFail.into();
-            } else {
+            if let std::collections::hash_map::Entry::Vacant(e) = lock.0.entry(request.chair_id) {
                 let entity_id = active_entities
                     .iter()
                     .find(|(owner_uid, _)| owner_uid.0 == uid)
                     .unwrap()
                     .1;
 
-                lock.0
-                    .insert(request.chair_id, (message.sender_uid(), entity_id.0));
+                e.insert((message.sender_uid(), entity_id.0));
 
                 rsp.chair_id = request.chair_id;
                 rsp.entity_id = entity_id.0;
@@ -51,10 +45,13 @@ pub fn avatar_lock_chair(
                     "chair id {} is now locked by player: {uid}",
                     request.chair_id
                 );
+            } else {
+                debug!("chair with id {} is already locked", request.chair_id);
+                rsp.retcode = Retcode::RetFail.into();
             }
 
             out.send(message.sender_uid(), rsp);
-        } else if let Some(_) = message.decode::<EvtAvatarStandUpNotify>() {
+        } else if message.decode::<EvtAvatarStandUpNotify>().is_some() {
             let uid = message.sender_uid();
 
             lock.0.retain(|id, (locked_by, _)| {

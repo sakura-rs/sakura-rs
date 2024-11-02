@@ -8,7 +8,7 @@ pub struct Transform {
     pub rotation: Vector3,
 }
 
-#[derive(Default, PartialEq, Clone, Debug)]
+#[derive(Default, PartialEq, Clone, Debug, Copy)]
 pub struct Vector3 {
     pub x: f32,
     pub y: f32,

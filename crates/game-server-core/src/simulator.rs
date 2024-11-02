@@ -78,7 +78,7 @@ fn simulation_loop(
                 immediate_mode,
             } => {
                 if let Some(world_owner_uid) = player_uid_map.get(&uid) {
-                    if let Some(world) = player_world_map.get_mut(&world_owner_uid) {
+                    if let Some(world) = player_world_map.get_mut(world_owner_uid) {
                         world.add_packet(uid, cmd_id, data);
                         if immediate_mode {
                             world.update();
@@ -96,7 +96,7 @@ fn simulation_loop(
             }
             WorldUpdate(uid) => {
                 if let Some(world_owner_uid) = player_uid_map.get(&uid) {
-                    if let Some(world) = player_world_map.get_mut(&world_owner_uid) {
+                    if let Some(world) = player_world_map.get_mut(world_owner_uid) {
                         world.update();
                     }
                 }

@@ -35,11 +35,7 @@ pub fn entity_movement(
             }
         }
 
-        if let Some((Some(pos), Some(rot))) = info
-            .motion_info
-            .as_ref()
-            .map(|i| (i.pos.clone(), i.rot.clone()))
-        {
+        if let Some((Some(pos), Some(rot))) = info.motion_info.as_ref().map(|i| (i.pos, i.rot)) {
             transform.position = pos.into();
             transform.rotation = rot.into();
         }
@@ -56,8 +52,8 @@ pub fn track_player_position(
 ) {
     for (transform, owner_uid) in moved_player_avatars.iter() {
         let player = players.get_mut(owner_uid.0);
-        player.world_position.position = transform.position.clone().into();
-        player.world_position.rotation = transform.rotation.clone().into();
+        player.world_position.position = transform.position.into();
+        player.world_position.rotation = transform.rotation.into();
 
         debug!("player with uid {} moved to {}", owner_uid.0, transform);
     }

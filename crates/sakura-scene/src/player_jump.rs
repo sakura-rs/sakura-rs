@@ -15,13 +15,13 @@ pub fn player_jump(
 ) {
     for ScenePlayerJumpEvent(uid, destination) in events.read() {
         let player = players.get_mut(*uid);
-        player.world_position.position = destination.clone().into();
+        player.world_position.position = (*destination).into();
 
         enter_events.send(BeginEnterSceneEvent {
             uid: *uid,
             scene_id: **current_scene_id,
             enter_type: sakura_proto::EnterType::EnterJump,
-            position: destination.clone(),
+            position: *destination,
         });
     }
 }

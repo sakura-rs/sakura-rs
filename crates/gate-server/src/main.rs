@@ -11,11 +11,11 @@ use common::{
 };
 use config::GateServerConfig;
 use dashmap::DashMap;
+use handler::server_message_handler;
+use net::UdpServer;
 use sakura_database::DbConnection;
 use sakura_encryption::{rsa::RsaKeyPair, xor::MhyXorpad};
 use sakura_network::{listener, ServerSocket};
-use handler::server_message_handler;
-use net::UdpServer;
 use tracing::Level;
 
 mod config;
@@ -51,7 +51,7 @@ async fn main() -> Result<()> {
 
     let cur_region = region_list
         .into_iter()
-        .find(|r| &r.name == &CONFIG.cur_region_name)
+        .find(|r| r.name == CONFIG.cur_region_name)
         .expect("cur_region not found in region list");
 
     let initial_xorpad = if let Some(secret_key_path) = cur_region.secret_key_path.as_ref() {

@@ -61,7 +61,7 @@ pub fn change_avatar(
                     let transform = match (request.is_move, request.move_pos) {
                         (true, Some(move_pos)) => Transform {
                             position: move_pos.into(),
-                            rotation: cur_avatar_data.transform.rotation.clone(),
+                            rotation: cur_avatar_data.transform.rotation,
                         },
                         _ => cur_avatar_data.transform.clone(),
                     };

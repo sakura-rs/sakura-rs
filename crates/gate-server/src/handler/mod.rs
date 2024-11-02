@@ -5,13 +5,13 @@ pub mod server_message_handler;
 use std::sync::{Arc, OnceLock};
 
 use anyhow::Result;
+use protocol_util::convert_union_cmd_notify_data;
 use sakura_encryption::xor::MhyXorpad;
 use sakura_proto::{
     packet::{self, NetPacket},
     raw_packet::{make_raw_packet, RawPacket},
     CmdID, GetPlayerTokenReq, PacketHead, PingReq, PingRsp, Protobuf, Retcode, UnionCmdNotify,
 };
-use protocol_util::convert_union_cmd_notify_data;
 use tokio::sync::mpsc;
 use tracing::{debug, warn};
 
@@ -111,7 +111,7 @@ async fn handle_packet(
                     return;
                 };
 
-                let rsp = get_player_token::process_message(state, &session, request, uid as u32);
+                let rsp = get_player_token::process_message(state, &session, request, uid);
                 let (cmd_id, body) =
                     packet::normal_to_client(rsp.get_cmd_id(), &rsp.encode_to_vec()).unwrap();
 

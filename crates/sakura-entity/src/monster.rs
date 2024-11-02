@@ -43,8 +43,8 @@ pub fn notify_appear_monster_entities(
                 entity_id: monster_data.entity_id.0,
                 name: String::new(),
                 motion_info: Some(MotionInfo {
-                    pos: Some(monster_data.transform.position.clone().into()),
-                    rot: Some(monster_data.transform.rotation.clone().into()),
+                    pos: Some(monster_data.transform.position.into()),
+                    rot: Some(monster_data.transform.rotation.into()),
                     speed: Some(Vector::default()),
                     ..Default::default()
                 }),
@@ -69,7 +69,7 @@ pub fn notify_appear_monster_entities(
                 entity_environment_info_list: Vec::with_capacity(0),
                 entity_authority_info: Some(EntityAuthorityInfo {
                     ability_info: Some(AbilitySyncStateInfo::default()),
-                    born_pos: Some(monster_data.transform.position.clone().into()),
+                    born_pos: Some(monster_data.transform.position.into()),
                     client_extra_info: Some(EntityClientExtraInfo {
                         skill_anchor_position: Some(Vector::default()),
                     }),
