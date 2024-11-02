@@ -79,6 +79,7 @@ mod tests {
 
     excel_test!(
         AvatarExcelConfig,
+        AvatarFlycloakExcelConfig,
         AvatarSkillDepotExcelConfig,
         AvatarPromoteExcelConfig,
         AvatarCurveExcelConfig,

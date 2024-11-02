@@ -94,6 +94,14 @@ pub fn client_to_normal(
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
+        crate::client::AvatarWearFlycloakRsp::CMD_ID => {
+            let proto = crate::client::AvatarWearFlycloakRsp::decode(body)?;
+            let proto: crate::normal::AvatarWearFlycloakRsp = proto.into();
+            Ok((
+                crate::normal::AvatarWearFlycloakRsp::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
         crate::client::ClientSetGameTimeReq::CMD_ID => {
             let proto = crate::client::ClientSetGameTimeReq::decode(body)?;
             let proto: crate::normal::ClientSetGameTimeReq = proto.into();
@@ -139,6 +147,14 @@ pub fn client_to_normal(
             let proto: crate::normal::UnionCmdNotify = proto.into();
             Ok((
                 crate::normal::UnionCmdNotify::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
+        crate::client::AvatarFlycloakChangeNotify::CMD_ID => {
+            let proto = crate::client::AvatarFlycloakChangeNotify::decode(body)?;
+            let proto: crate::normal::AvatarFlycloakChangeNotify = proto.into();
+            Ok((
+                crate::normal::AvatarFlycloakChangeNotify::CMD_ID,
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
@@ -534,6 +550,14 @@ pub fn client_to_normal(
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
+        crate::client::AvatarWearFlycloakReq::CMD_ID => {
+            let proto = crate::client::AvatarWearFlycloakReq::decode(body)?;
+            let proto: crate::normal::AvatarWearFlycloakReq = proto.into();
+            Ok((
+                crate::normal::AvatarWearFlycloakReq::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
         crate::client::SetUpAvatarTeamRsp::CMD_ID => {
             let proto = crate::client::SetUpAvatarTeamRsp::decode(body)?;
             let proto: crate::normal::SetUpAvatarTeamRsp = proto.into();
@@ -641,6 +665,14 @@ pub fn normal_to_client(
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
+        crate::normal::AvatarWearFlycloakRsp::CMD_ID => {
+            let proto = crate::normal::AvatarWearFlycloakRsp::decode(body)?;
+            let proto: crate::client::AvatarWearFlycloakRsp = proto.into();
+            Ok((
+                crate::client::AvatarWearFlycloakRsp::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
         crate::normal::ClientSetGameTimeReq::CMD_ID => {
             let proto = crate::normal::ClientSetGameTimeReq::decode(body)?;
             let proto: crate::client::ClientSetGameTimeReq = proto.into();
@@ -686,6 +718,14 @@ pub fn normal_to_client(
             let proto: crate::client::UnionCmdNotify = proto.into();
             Ok((
                 crate::client::UnionCmdNotify::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
+        crate::normal::AvatarFlycloakChangeNotify::CMD_ID => {
+            let proto = crate::normal::AvatarFlycloakChangeNotify::decode(body)?;
+            let proto: crate::client::AvatarFlycloakChangeNotify = proto.into();
+            Ok((
+                crate::client::AvatarFlycloakChangeNotify::CMD_ID,
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
@@ -1078,6 +1118,14 @@ pub fn normal_to_client(
             let proto: crate::client::ChangeAvatarRsp = proto.into();
             Ok((
                 crate::client::ChangeAvatarRsp::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
+        crate::normal::AvatarWearFlycloakReq::CMD_ID => {
+            let proto = crate::normal::AvatarWearFlycloakReq::decode(body)?;
+            let proto: crate::client::AvatarWearFlycloakReq = proto.into();
+            Ok((
+                crate::client::AvatarWearFlycloakReq::CMD_ID,
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }

@@ -1,5 +1,6 @@
 mod avatar_curve_excel_config;
 mod avatar_excel_config;
+mod avatar_flycloak_excel_config;
 mod avatar_promote_excel_config;
 mod avatar_skill_depot_excel_config;
 mod map_area_config;
@@ -12,6 +13,7 @@ mod weapon_excel_config;
 pub mod common;
 pub use avatar_curve_excel_config::*;
 pub use avatar_excel_config::*;
+pub use avatar_flycloak_excel_config::*;
 pub use avatar_promote_excel_config::*;
 pub use avatar_skill_depot_excel_config::*;
 pub use map_area_config::*;
@@ -63,6 +65,7 @@ macro_rules! excel_loader {
 
 excel_loader! {
     AvatarExcelConfig;
+    AvatarFlycloakExcelConfig;
     AvatarSkillDepotExcelConfig;
     AvatarCurveExcelConfig;
     AvatarPromoteExcelConfig;

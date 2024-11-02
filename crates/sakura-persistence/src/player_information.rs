@@ -1,6 +1,6 @@
 // player persistent 'Data' definitions
 
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 
 use serde::{Deserialize, Serialize};
 
@@ -33,6 +33,7 @@ pub struct BasicModuleInformation {
 pub struct AvatarModuleInformation {
     pub avatar_map: HashMap<u64, AvatarInformation>,
     pub team_map: HashMap<u32, AvatarTeamInformation>,
+    pub owned_flycloak_set: HashSet<u32>,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -53,6 +54,7 @@ pub struct AvatarInformation {
     pub cur_hp: f32,
     pub skill_level_map: HashMap<u32, u32>,
     pub inherent_proud_skill_list: Vec<u32>,
+    pub wearing_flycloak_id: u32,
 }
 
 #[derive(Serialize, Deserialize)]

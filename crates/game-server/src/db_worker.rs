@@ -4,7 +4,7 @@ use tokio::{
     select,
     sync::{mpsc, oneshot},
 };
-use tracing::error;
+use tracing::{error, warn};
 
 use crate::player_info_util;
 
@@ -45,7 +45,12 @@ async fn db_work_loop(
                 if let Some(DbOperation::Fetch(uid, tx)) = op {
                     let result = match sql_op::select_player_data_by_uid(&connection, uid as i32).await
                 {
-                    Ok(Some(row)) => Some(serde_json::from_value(row.data.0).unwrap()),
+                    Ok(Some(row)) => Some(serde_json::from_value(row.data.0).unwrap_or_else(|err| {
+                        // as of early development state, player info schema will change from time to time
+                        // it's better to replace it with default one everytime it changes, for now
+                        warn!("failed to deserialize player data (uid: {uid}), replacing with default, error: {err}");
+                        player_info_util::create_default_player_information(uid, String::from("sakura-rs"))
+                    })),
                     Ok(None) => Some(player_info_util::create_default_player_information(
                         uid,
                         String::from("sakura-rs"),

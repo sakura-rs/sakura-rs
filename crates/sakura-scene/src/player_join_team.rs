@@ -3,8 +3,8 @@ use sakura_data::excel::{avatar_excel_config_collection, weapon_excel_config_col
 use sakura_entity::{
     ability::Ability,
     avatar::{
-        AvatarBundle, AvatarID, BornTime, ControlPeer, CurrentPlayerAvatarMarker, Equipment,
-        IndexInSceneTeam, InherentProudSkillList, SkillDepot, SkillLevelMap,
+        AvatarAppearance, AvatarBundle, AvatarID, BornTime, ControlPeer, CurrentPlayerAvatarMarker,
+        Equipment, IndexInSceneTeam, InherentProudSkillList, SkillDepot, SkillLevelMap,
     },
     common::*,
     transform::Transform,
@@ -91,6 +91,10 @@ pub fn player_join_team(
                 life_state: LifeState::Alive,
                 equipment: Equipment {
                     weapon: weapon_entity,
+                },
+                appearance: AvatarAppearance {
+                    flycloak_id: to_spawn.wearing_flycloak_id,
+                    costume_id: 0, // TODO!
                 },
                 transform: Transform {
                     position: player_info.world_position.position.into(),

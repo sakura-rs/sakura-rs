@@ -12,6 +12,12 @@ pub struct Equipment {
     pub weapon: Entity,
 }
 
+#[derive(Component)]
+pub struct AvatarAppearance {
+    pub flycloak_id: u32,
+    pub costume_id: u32,
+}
+
 #[derive(Event)]
 pub struct AvatarEquipChangeEvent {
     pub player_uid: u32,
@@ -53,6 +59,7 @@ pub struct AvatarBundle {
     pub control_peer: ControlPeer,
     pub skill_depot: SkillDepot,
     pub equipment: Equipment,
+    pub appearance: AvatarAppearance,
     pub transform: Transform,
     pub owner_player_uid: OwnerPlayerUID,
     pub fight_properties: FightProperties,
@@ -74,6 +81,7 @@ pub struct AvatarQueryReadOnly {
     pub control_peer: &'static ControlPeer,
     pub skill_depot: &'static SkillDepot,
     pub equipment: &'static Equipment,
+    pub appearance: &'static AvatarAppearance,
     pub transform: &'static Transform,
     pub owner_player_uid: &'static OwnerPlayerUID,
     pub fight_properties: &'static FightProperties,
@@ -168,9 +176,9 @@ pub fn notify_appear_avatar_entities(
                         proud_skill_extra_level_map: HashMap::with_capacity(0),
                         server_buff_list: Vec::with_capacity(0),
                         team_resonance_list: Vec::with_capacity(0),
-                        wearing_flycloak_id: 140001,
+                        wearing_flycloak_id: avatar_data.appearance.flycloak_id,
                         born_time: avatar_data.born_time.0,
-                        costume_id: 0,
+                        costume_id: avatar_data.appearance.costume_id,
                         cur_vehicle_info: None,
                         excel_info: Some(AvatarExcelInfo::default()),
                         anim_hash: 0,

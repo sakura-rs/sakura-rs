@@ -131,9 +131,9 @@ pub fn notify_scene_team_update(
                                 proud_skill_extra_level_map: HashMap::with_capacity(0),
                                 server_buff_list: Vec::with_capacity(0),
                                 team_resonance_list: Vec::with_capacity(0),
-                                wearing_flycloak_id: 140001, // TODO
+                                wearing_flycloak_id: avatar_data.appearance.flycloak_id,
                                 born_time: avatar_data.born_time.0,
-                                costume_id: 0,
+                                costume_id: avatar_data.appearance.costume_id,
                                 cur_vehicle_info: None,
                                 excel_info: Some(AvatarExcelInfo::default()),
                                 anim_hash: 0,

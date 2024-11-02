@@ -115,8 +115,8 @@ pub fn sync_avatar_data(players: Res<Players>, out: Res<MessageOutput>) {
                                 .then_some(LifeState::Alive)
                                 .unwrap_or(LifeState::Dead)
                                 as u32,
-                            avatar_type: 1,              // TODO!
-                            wearing_flycloak_id: 140001, // TODO!
+                            avatar_type: 1, // TODO!
+                            wearing_flycloak_id: a.wearing_flycloak_id,
                             fetter_info: Some(AvatarFetterInfo::default()),
                             skill_level_map: a.skill_level_map.clone(),
                             inherent_proud_skill_list: a.inherent_proud_skill_list.clone(),
@@ -155,6 +155,12 @@ pub fn sync_avatar_data(players: Res<Players>, out: Res<MessageOutput>) {
                     })
                     .collect(),
                 cur_avatar_team_id: 1,
+                owned_flycloak_list: player_info
+                    .avatar_module
+                    .owned_flycloak_set
+                    .iter()
+                    .copied()
+                    .collect(),
                 ..Default::default()
             },
         );

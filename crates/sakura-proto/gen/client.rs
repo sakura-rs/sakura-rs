@@ -4422,9 +4422,9 @@ pub struct Kcplhcnkghg {
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(21345)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Knlnpbcgoid {
+pub struct AvatarWearFlycloakRsp {
     #[prost(uint32, tag = "8")]
-    pub mmligjnjajh: u32,
+    pub flycloak_id: u32,
     #[prost(int32, tag = "11")]
     pub retcode: i32,
     #[prost(uint64, tag = "13")]
@@ -7040,9 +7040,9 @@ pub struct Cghgjjopbje {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AvatarDataNotify {
     #[prost(uint32, repeated, tag = "1")]
-    pub kpigeejamhm: ::prost::alloc::vec::Vec<u32>,
+    pub owned_flycloak_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, repeated, tag = "2")]
-    pub pbioiifoapa: ::prost::alloc::vec::Vec<u32>,
+    pub backup_avatar_team_order_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, repeated, tag = "3")]
     pub ophdokofiho: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint64, tag = "4")]
@@ -7054,7 +7054,7 @@ pub struct AvatarDataNotify {
     #[prost(message, repeated, tag = "9")]
     pub avatar_list: ::prost::alloc::vec::Vec<AvatarInfo>,
     #[prost(message, repeated, tag = "11")]
-    pub dbhoeeglbbk: ::prost::alloc::vec::Vec<Dpgcpimlklh>,
+    pub avatar_rename_list: ::prost::alloc::vec::Vec<AvatarRenameInfo>,
     #[prost(uint32, tag = "13")]
     pub cur_avatar_team_id: u32,
     #[prost(uint64, repeated, tag = "15")]
@@ -7647,11 +7647,11 @@ pub struct Nlcpaedkfkl {}
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(5287)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Nifogenhilj {
+pub struct AvatarFlycloakChangeNotify {
     #[prost(uint64, tag = "3")]
     pub avatar_guid: u64,
     #[prost(uint32, tag = "15")]
-    pub mmligjnjajh: u32,
+    pub flycloak_id: u32,
 }
 #[derive(sakura_proto_derive::CmdID)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -9179,7 +9179,7 @@ pub struct Hegpadahbck {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Cajbokcille {
     #[prost(message, repeated, tag = "14")]
-    pub dbhoeeglbbk: ::prost::alloc::vec::Vec<Dpgcpimlklh>,
+    pub avatar_rename_list: ::prost::alloc::vec::Vec<AvatarRenameInfo>,
 }
 #[derive(sakura_proto_derive::CmdID)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -13969,7 +13969,7 @@ pub struct Djfnbcgcgcp {
 }
 #[derive(sakura_proto_derive::CmdID)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Dpgcpimlklh {
+pub struct AvatarRenameInfo {
     #[prost(string, tag = "5")]
     pub hglnccjieag: ::prost::alloc::string::String,
     #[prost(uint32, tag = "10")]
@@ -16979,7 +16979,7 @@ pub struct Mnldlljpokg {
     #[prost(map = "uint32, message", tag = "4")]
     pub avatar_team_map: ::std::collections::HashMap<u32, AvatarTeam>,
     #[prost(uint32, repeated, tag = "9")]
-    pub pbioiifoapa: ::prost::alloc::vec::Vec<u32>,
+    pub backup_avatar_team_order_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint64, repeated, tag = "11")]
     pub temp_avatar_guid_list: ::prost::alloc::vec::Vec<u64>,
     #[prost(uint32, tag = "13")]
@@ -30159,7 +30159,7 @@ pub struct Jghgpmmambl {
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Lpjenjfjmbl {
     #[prost(uint32, tag = "1")]
-    pub mmligjnjajh: u32,
+    pub flycloak_id: u32,
 }
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(21799)]
@@ -49838,11 +49838,11 @@ pub struct Hjeokffemin {
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(5713)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Eojjhgpcjfe {
+pub struct AvatarWearFlycloakReq {
     #[prost(uint64, tag = "3")]
     pub avatar_guid: u64,
     #[prost(uint32, tag = "7")]
-    pub mmligjnjajh: u32,
+    pub flycloak_id: u32,
 }
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(7270)]

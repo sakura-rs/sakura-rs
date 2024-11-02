@@ -302,6 +302,16 @@ impl From<crate::client::AvatarTeam> for AvatarTeam {
         }
     }
 }
+impl From<crate::client::AvatarWearFlycloakRsp> for AvatarWearFlycloakRsp {
+    fn from(value: crate::client::AvatarWearFlycloakRsp) -> Self {
+        Self {
+            flycloak_id: value.flycloak_id.into(),
+            retcode: value.retcode.into(),
+            avatar_guid: value.avatar_guid.into(),
+            ..Default::default()
+        }
+    }
+}
 impl From<crate::client::ClientSetGameTimeReq> for ClientSetGameTimeReq {
     fn from(value: crate::client::ClientSetGameTimeReq) -> Self {
         Self {
@@ -399,6 +409,16 @@ impl From<crate::client::ClientGadgetInfo> for ClientGadgetInfo {
 impl From<crate::client::AvatarDataNotify> for AvatarDataNotify {
     fn from(value: crate::client::AvatarDataNotify) -> Self {
         Self {
+            owned_flycloak_list: value
+                .owned_flycloak_list
+                .into_iter()
+                .map(|v| v.into())
+                .collect(),
+            backup_avatar_team_order_list: value
+                .backup_avatar_team_order_list
+                .into_iter()
+                .map(|v| v.into())
+                .collect(),
             choose_avatar_guid: value.choose_avatar_guid.into(),
             avatar_team_map: value
                 .avatar_team_map
@@ -406,6 +426,11 @@ impl From<crate::client::AvatarDataNotify> for AvatarDataNotify {
                 .map(|(k, v)| (k.into(), v.into()))
                 .collect(),
             avatar_list: value.avatar_list.into_iter().map(|v| v.into()).collect(),
+            avatar_rename_list: value
+                .avatar_rename_list
+                .into_iter()
+                .map(|v| v.into())
+                .collect(),
             cur_avatar_team_id: value.cur_avatar_team_id.into(),
             temp_avatar_guid_list: value
                 .temp_avatar_guid_list
@@ -462,6 +487,15 @@ impl From<crate::client::UnionCmdNotify> for UnionCmdNotify {
     fn from(value: crate::client::UnionCmdNotify) -> Self {
         Self {
             cmd_list: value.cmd_list.into_iter().map(|v| v.into()).collect(),
+            ..Default::default()
+        }
+    }
+}
+impl From<crate::client::AvatarFlycloakChangeNotify> for AvatarFlycloakChangeNotify {
+    fn from(value: crate::client::AvatarFlycloakChangeNotify) -> Self {
+        Self {
+            avatar_guid: value.avatar_guid.into(),
+            flycloak_id: value.flycloak_id.into(),
             ..Default::default()
         }
     }
@@ -836,6 +870,14 @@ impl From<crate::client::ChangeAvatarReq> for ChangeAvatarReq {
             guid: value.guid.into(),
             is_move: value.is_move.into(),
             skill_id: value.skill_id.into(),
+            ..Default::default()
+        }
+    }
+}
+impl From<crate::client::AvatarRenameInfo> for AvatarRenameInfo {
+    fn from(value: crate::client::AvatarRenameInfo) -> Self {
+        Self {
+            avatar_id: value.avatar_id.into(),
             ..Default::default()
         }
     }
@@ -2568,6 +2610,15 @@ impl From<crate::client::ModifierDurability> for ModifierDurability {
         Self {
             reduce_ratio: value.reduce_ratio.into(),
             remaining_durability: value.remaining_durability.into(),
+            ..Default::default()
+        }
+    }
+}
+impl From<crate::client::AvatarWearFlycloakReq> for AvatarWearFlycloakReq {
+    fn from(value: crate::client::AvatarWearFlycloakReq) -> Self {
+        Self {
+            avatar_guid: value.avatar_guid.into(),
+            flycloak_id: value.flycloak_id.into(),
             ..Default::default()
         }
     }
