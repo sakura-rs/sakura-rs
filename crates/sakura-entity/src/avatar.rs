@@ -56,6 +56,7 @@ pub struct AvatarBundle {
     pub transform: Transform,
     pub owner_player_uid: OwnerPlayerUID,
     pub fight_properties: FightProperties,
+    pub life_state: LifeState,
     pub ability: Ability,
     pub born_time: BornTime,
     pub index_in_scene_team: IndexInSceneTeam,
@@ -76,6 +77,7 @@ pub struct AvatarQueryReadOnly {
     pub transform: &'static Transform,
     pub owner_player_uid: &'static OwnerPlayerUID,
     pub fight_properties: &'static FightProperties,
+    pub life_state: &'static LifeState,
     pub ability: &'static Ability,
     pub born_time: &'static BornTime,
     pub index_in_scene_team: &'static IndexInSceneTeam,
@@ -121,7 +123,7 @@ pub fn notify_appear_avatar_entities(
                             prop_value: *v,
                         })
                         .collect(),
-                    life_state: 1,
+                    life_state: *avatar_data.life_state as u32,
                     animator_para_list: vec![AnimatorParameterValueInfoPair {
                         name_id: 0,
                         animator_para: Some(AnimatorParameterValueInfo::default()),

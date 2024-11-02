@@ -88,6 +88,7 @@ pub fn player_join_team(
                     weapon_config,
                     *level,
                 ),
+                life_state: LifeState::Alive,
                 equipment: Equipment {
                     weapon: weapon_entity.clone(),
                 },

@@ -32,6 +32,13 @@ pub struct ProtocolEntityID(pub u32);
 #[derive(Component)]
 pub struct FightProperties(pub HashMap<FightPropType, f32>);
 
+#[derive(Component, Clone, Copy, PartialEq, Eq)]
+#[repr(u32)]
+pub enum LifeState {
+    Alive = 1,
+    Dead = 2,
+}
+
 #[derive(Component)]
 pub struct Visible;
 

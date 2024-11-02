@@ -81,7 +81,7 @@ pub fn notify_scene_team_update(
                                     prop_value: *v,
                                 })
                                 .collect(),
-                            life_state: 1,
+                            life_state: *avatar_data.life_state as u32,
                             animator_para_list: vec![AnimatorParameterValueInfoPair {
                                 name_id: 0,
                                 animator_para: Some(AnimatorParameterValueInfo::default()),

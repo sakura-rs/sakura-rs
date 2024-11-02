@@ -1,7 +1,7 @@
 use avatar::AvatarEquipChangeEvent;
 use bevy_app::prelude::*;
 use bevy_ecs::prelude::*;
-use common::{EntityCounter, FightProperties, ProtocolEntityID, ToBeRemovedMarker};
+use common::{EntityCounter, FightProperties, LifeState, ProtocolEntityID, ToBeRemovedMarker};
 use sakura_data::prop_type::FightPropType;
 use sakura_message::output::MessageOutput;
 
@@ -30,6 +30,7 @@ impl Plugin for EntityPlugin {
                 Last,
                 (
                     update_entity_life_state,
+                    notify_life_state_change,
                     notify_disappear_entities,
                     remove_marked_entities,
                     avatar::notify_appear_avatar_entities
@@ -47,22 +48,32 @@ pub struct EntityDisappearEvent(pub u32, pub VisionType);
 
 fn update_entity_life_state(
     mut commands: Commands,
-    entities: Query<(Entity, &ProtocolEntityID, &FightProperties), Changed<FightProperties>>,
+    mut entities: Query<
+        (Entity, &ProtocolEntityID, &FightProperties, &mut LifeState),
+        Changed<FightProperties>,
+    >,
     mut disappear_events: EventWriter<EntityDisappearEvent>,
-    message_output: Res<MessageOutput>,
 ) {
-    for (entity, id, fight_props) in entities.iter() {
+    for (entity, id, fight_props, mut life_state) in entities.iter_mut() {
         if fight_props.get_property(FightPropType::CurHp) <= 0.0 {
             commands.entity(entity).insert(ToBeRemovedMarker);
             disappear_events.send(EntityDisappearEvent(id.0, VisionType::Die));
-
-            message_output.send_to_all(LifeStateChangeNotify {
-                entity_id: id.0,
-                life_state: 2,
-                ..Default::default()
-            });
+            *life_state = LifeState::Dead;
         }
     }
+}
+
+fn notify_life_state_change(
+    entities: Query<(&ProtocolEntityID, &LifeState), Changed<LifeState>>,
+    message_output: Res<MessageOutput>,
+) {
+    entities.iter().for_each(|(id, life_state)| {
+        message_output.send_to_all(LifeStateChangeNotify {
+            entity_id: id.0,
+            life_state: *life_state as u32,
+            ..Default::default()
+        })
+    });
 }
 
 fn notify_disappear_entities(

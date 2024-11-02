@@ -14,6 +14,7 @@ pub struct MonsterBundle {
     pub level: Level,
     pub transform: Transform,
     pub fight_properties: FightProperties,
+    pub life_state: LifeState,
 }
 
 #[derive(QueryData)]
@@ -23,6 +24,7 @@ pub struct MonsterQueryReadOnly {
     pub level: &'static Level,
     pub transform: &'static Transform,
     pub fight_properties: &'static FightProperties,
+    pub life_state: &'static LifeState,
 }
 
 pub fn notify_appear_monster_entities(
@@ -56,7 +58,7 @@ pub fn notify_appear_monster_entities(
                         prop_value: *v,
                     })
                     .collect(),
-                life_state: 1,
+                life_state: *monster_data.life_state as u32,
                 animator_para_list: vec![AnimatorParameterValueInfoPair {
                     name_id: 0,
                     animator_para: Some(AnimatorParameterValueInfo::default()),

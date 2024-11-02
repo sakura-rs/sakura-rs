@@ -1,8 +1,9 @@
 use bevy_app::prelude::*;
 use bevy_ecs::prelude::*;
+use rand::RngCore;
 use sakura_data::excel::monster_excel_config_collection;
 use sakura_entity::{
-    common::{EntityCounter, GrowCurveConfigType, Level, Visible},
+    common::{EntityCounter, GrowCurveConfigType, Level, LifeState, Visible},
     monster::{MonsterBundle, MonsterID},
     transform::{Transform, Vector3},
     util::to_protocol_entity_id,
@@ -10,7 +11,6 @@ use sakura_entity::{
 };
 use sakura_persistence::Players;
 use sakura_scene::ScenePlayerJumpEvent;
-use rand::RngCore;
 use tracing::{debug, instrument};
 use util::create_fight_properties_by_monster_config;
 
@@ -106,6 +106,7 @@ pub fn debug_command_handler(
                             rotation: Vector3::default(),
                         },
                         fight_properties,
+                        life_state: LifeState::Alive,
                     })
                     .insert(Visible);
             }
