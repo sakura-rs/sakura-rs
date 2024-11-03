@@ -4,7 +4,8 @@ use common::time_util;
 use sakura_data::excel::{
     avatar_costume_excel_config_collection, avatar_excel_config_collection,
     avatar_flycloak_excel_config_collection, avatar_skill_depot_excel_config_collection,
-    weapon_excel_config_collection, AvatarExcelConfig, AvatarUseType,
+    avatar_trace_effect_excel_config_collection, weapon_excel_config_collection, AvatarExcelConfig,
+    AvatarUseType,
 };
 
 use sakura_persistence::player_information::*;
@@ -31,6 +32,9 @@ pub fn create_default_player_information(uid: u32, nick_name: String) -> PlayerI
             owned_costume_set: avatar_costume_excel_config_collection::iter()
                 .filter(|c| !c.is_default)
                 .map(|c| c.skin_id)
+                .collect(),
+            owned_trace_effect_set: avatar_trace_effect_excel_config_collection::iter()
+                .map(|c| c.trace_effect_id)
                 .collect(),
         },
         item_map: HashMap::new(),
@@ -134,6 +138,7 @@ fn add_avatar_and_weapon(player: &mut PlayerInformation, avatar: &AvatarExcelCon
             inherent_proud_skill_list,
             wearing_flycloak_id: DEFAULT_FLYCLOAK_ID,
             costume_id: 0,
+            trace_effect_id: 0,
         },
     );
 

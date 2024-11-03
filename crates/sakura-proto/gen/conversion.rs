@@ -185,6 +185,14 @@ pub fn client_to_normal(
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
+        crate::client::AvatarChangeTraceEffectReq::CMD_ID => {
+            let proto = crate::client::AvatarChangeTraceEffectReq::decode(body)?;
+            let proto: crate::normal::AvatarChangeTraceEffectReq = proto.into();
+            Ok((
+                crate::normal::AvatarChangeTraceEffectReq::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
         crate::client::QueryPathReq::CMD_ID => {
             let proto = crate::client::QueryPathReq::decode(body)?;
             let proto: crate::normal::QueryPathReq = proto.into();
@@ -286,6 +294,14 @@ pub fn client_to_normal(
             let proto: crate::normal::PlayerLoginReq = proto.into();
             Ok((
                 crate::normal::PlayerLoginReq::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
+        crate::client::AvatarChangeTraceEffectRsp::CMD_ID => {
+            let proto = crate::client::AvatarChangeTraceEffectRsp::decode(body)?;
+            let proto: crate::normal::AvatarChangeTraceEffectRsp = proto.into();
+            Ok((
+                crate::normal::AvatarChangeTraceEffectRsp::CMD_ID,
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
@@ -414,6 +430,14 @@ pub fn client_to_normal(
             let proto: crate::normal::UnlockTransPointReq = proto.into();
             Ok((
                 crate::normal::UnlockTransPointReq::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
+        crate::client::AvatarChangeTraceEffectNotify::CMD_ID => {
+            let proto = crate::client::AvatarChangeTraceEffectNotify::decode(body)?;
+            let proto: crate::normal::AvatarChangeTraceEffectNotify = proto.into();
+            Ok((
+                crate::normal::AvatarChangeTraceEffectNotify::CMD_ID,
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
@@ -799,6 +823,14 @@ pub fn normal_to_client(
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
+        crate::normal::AvatarChangeTraceEffectReq::CMD_ID => {
+            let proto = crate::normal::AvatarChangeTraceEffectReq::decode(body)?;
+            let proto: crate::client::AvatarChangeTraceEffectReq = proto.into();
+            Ok((
+                crate::client::AvatarChangeTraceEffectReq::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
         crate::normal::QueryPathReq::CMD_ID => {
             let proto = crate::normal::QueryPathReq::decode(body)?;
             let proto: crate::client::QueryPathReq = proto.into();
@@ -900,6 +932,14 @@ pub fn normal_to_client(
             let proto: crate::client::PlayerLoginReq = proto.into();
             Ok((
                 crate::client::PlayerLoginReq::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
+        crate::normal::AvatarChangeTraceEffectRsp::CMD_ID => {
+            let proto = crate::normal::AvatarChangeTraceEffectRsp::decode(body)?;
+            let proto: crate::client::AvatarChangeTraceEffectRsp = proto.into();
+            Ok((
+                crate::client::AvatarChangeTraceEffectRsp::CMD_ID,
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
@@ -1028,6 +1068,14 @@ pub fn normal_to_client(
             let proto: crate::client::UnlockTransPointReq = proto.into();
             Ok((
                 crate::client::UnlockTransPointReq::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
+        crate::normal::AvatarChangeTraceEffectNotify::CMD_ID => {
+            let proto = crate::normal::AvatarChangeTraceEffectNotify::decode(body)?;
+            let proto: crate::client::AvatarChangeTraceEffectNotify = proto.into();
+            Ok((
+                crate::client::AvatarChangeTraceEffectNotify::CMD_ID,
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }

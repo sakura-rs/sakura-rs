@@ -134,6 +134,7 @@ pub fn notify_scene_team_update(
                                 wearing_flycloak_id: avatar_data.appearance.flycloak_id,
                                 born_time: avatar_data.born_time.0,
                                 costume_id: avatar_data.appearance.costume_id,
+                                trace_effect_id: avatar_data.appearance.trace_effect_id,
                                 cur_vehicle_info: None,
                                 excel_info: Some(AvatarExcelInfo::default()),
                                 anim_hash: 0,

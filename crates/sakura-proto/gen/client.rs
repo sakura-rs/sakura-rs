@@ -9248,11 +9248,11 @@ pub struct Mkbmdcgmieo {
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(689)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Nolndpmeomc {
+pub struct AvatarChangeTraceEffectReq {
     #[prost(uint64, tag = "9")]
     pub avatar_guid: u64,
     #[prost(uint32, tag = "5")]
-    pub dpmaabplgdp: u32,
+    pub trace_effect_id: u32,
 }
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(2773)]
@@ -18167,7 +18167,7 @@ pub struct AvatarInfo {
     #[prost(uint32, tag = "30")]
     pub mfmiphlgdfl: u32,
     #[prost(uint32, tag = "31")]
-    pub dpmaabplgdp: u32,
+    pub trace_effect_id: u32,
 }
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(26048)]
@@ -18559,9 +18559,9 @@ pub struct Cgoihcdffej {
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(25986)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Opcpmjolife {
+pub struct AvatarChangeTraceEffectRsp {
     #[prost(uint32, tag = "1")]
-    pub dpmaabplgdp: u32,
+    pub trace_effect_id: u32,
     #[prost(int32, tag = "12")]
     pub retcode: i32,
     #[prost(uint64, tag = "15")]
@@ -20049,7 +20049,7 @@ pub struct Lmfbfgjedkn {
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Glinbnfejlc {
     #[prost(uint32, tag = "15")]
-    pub dpmaabplgdp: u32,
+    pub trace_effect_id: u32,
 }
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(9144)]
@@ -37400,7 +37400,7 @@ pub struct SceneAvatarInfo {
     #[prost(uint32, tag = "22")]
     pub anim_hash: u32,
     #[prost(uint32, tag = "23")]
-    pub dpmaabplgdp: u32,
+    pub trace_effect_id: u32,
 }
 #[derive(sakura_proto_derive::CmdID)]
 #[derive(Clone, PartialEq, ::prost::Message)]

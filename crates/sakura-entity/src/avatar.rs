@@ -6,7 +6,7 @@ use sakura_persistence::{
     player_information::{AvatarInformation, ItemInformation},
     Players,
 };
-use sakura_proto::{AvatarChangeCostumeNotify, SceneEntityInfo};
+use sakura_proto::{AvatarChangeCostumeNotify, AvatarChangeTraceEffectNotify, SceneEntityInfo};
 
 use crate::{
     int_prop_pair,
@@ -25,6 +25,7 @@ pub struct Equipment {
 pub struct AvatarAppearance {
     pub flycloak_id: u32,
     pub costume_id: u32,
+    pub trace_effect_id: u32,
 }
 
 #[derive(Event)]
@@ -34,8 +35,17 @@ pub struct AvatarEquipChangeEvent {
     pub weapon_guid: u64,
 }
 
+pub enum AvatarAppearanceChange {
+    Costume(u32),
+    TraceEffect(u32),
+}
+
 #[derive(Event)]
-pub struct AvatarCostumeChangeEvent(pub u32, pub u64, pub u32);
+pub struct AvatarAppearanceChangeEvent {
+    pub player_uid: u32,
+    pub avatar_guid: u64,
+    pub change: AvatarAppearanceChange,
+}
 
 #[derive(Component)]
 pub struct AvatarID(pub u32);
@@ -106,47 +116,71 @@ pub struct AvatarQueryReadOnly {
 }
 
 pub fn update_avatar_appearance(
-    mut events: EventReader<AvatarCostumeChangeEvent>,
+    mut events: EventReader<AvatarAppearanceChangeEvent>,
     mut avatars: Query<(&Guid, &mut AvatarAppearance)>,
 ) {
-    for AvatarCostumeChangeEvent(_, guid, costume_id) in events.read() {
-        if let Some((_, mut appearance)) = avatars.iter_mut().find(|(g, _)| g.0 == *guid) {
-            appearance.costume_id = *costume_id;
+    for event in events.read() {
+        if let Some((_, mut appearance)) =
+            avatars.iter_mut().find(|(g, _)| g.0 == event.avatar_guid)
+        {
+            match event.change {
+                AvatarAppearanceChange::Costume(costume_id) => {
+                    appearance.costume_id = costume_id;
+                }
+                AvatarAppearanceChange::TraceEffect(trace_effect_id) => {
+                    appearance.trace_effect_id = trace_effect_id;
+                }
+            }
         }
     }
 }
 
-pub fn notify_avatar_costume_change(
-    mut events: EventReader<AvatarCostumeChangeEvent>,
+pub fn notify_avatar_appearance_change(
+    mut events: EventReader<AvatarAppearanceChangeEvent>,
     avatars: Query<AvatarQueryReadOnly>,
     weapons: Query<WeaponQueryReadOnly>,
     message_output: Res<MessageOutput>,
     players: Res<Players>,
 ) {
-    for AvatarCostumeChangeEvent(player_uid, guid, _) in events.read() {
+    for event in events.read() {
         if let Some(avatar_data) = avatars
             .iter()
-            .find(|avatar_data| avatar_data.guid.0 == *guid)
+            .find(|avatar_data| avatar_data.guid.0 == event.avatar_guid)
         {
             let weapon_data = weapons.get(avatar_data.equipment.weapon).unwrap();
-            message_output.send_to_all(AvatarChangeCostumeNotify {
-                entity_info: Some(build_avatar_entity_info(&avatar_data, &weapon_data)),
-            });
+            let entity_info = Some(build_avatar_entity_info(&avatar_data, &weapon_data));
+
+            match event.change {
+                AvatarAppearanceChange::Costume(_) => {
+                    message_output.send_to_all(AvatarChangeCostumeNotify { entity_info })
+                }
+                AvatarAppearanceChange::TraceEffect(_) => {
+                    message_output.send_to_all(AvatarChangeTraceEffectNotify { entity_info })
+                }
+            }
         }
-        // that's disgusting, this packet required even if avatar is not on scene
+        // that's disgusting, notify required even if avatar is not on scene
         // even though it contains SceneEntityInfo
         else {
-            let player = players.get(*player_uid);
+            let player = players.get(event.player_uid);
 
-            let avatar = player.avatar_module.avatar_map.get(guid).unwrap();
+            let avatar = player
+                .avatar_module
+                .avatar_map
+                .get(&event.avatar_guid)
+                .unwrap();
             let weapon = player.item_map.get(&avatar.weapon_guid).unwrap();
 
-            message_output.send(
-                *player_uid,
-                AvatarChangeCostumeNotify {
-                    entity_info: Some(build_fake_avatar_entity_info(avatar, weapon)),
-                },
-            );
+            let entity_info = Some(build_fake_avatar_entity_info(avatar, weapon));
+            match event.change {
+                AvatarAppearanceChange::Costume(_) => {
+                    message_output.send(event.player_uid, AvatarChangeCostumeNotify { entity_info })
+                }
+                AvatarAppearanceChange::TraceEffect(_) => message_output.send(
+                    event.player_uid,
+                    AvatarChangeTraceEffectNotify { entity_info },
+                ),
+            }
         }
     }
 }
@@ -219,6 +253,7 @@ fn build_fake_avatar_entity_info(
             wearing_flycloak_id: avatar.wearing_flycloak_id,
             born_time: avatar.born_time,
             costume_id: avatar.costume_id,
+            trace_effect_id: avatar.trace_effect_id,
             cur_vehicle_info: None,
             excel_info: Some(AvatarExcelInfo::default()),
             anim_hash: 0,
@@ -305,6 +340,7 @@ fn build_avatar_entity_info(
             wearing_flycloak_id: avatar_data.appearance.flycloak_id,
             born_time: avatar_data.born_time.0,
             costume_id: avatar_data.appearance.costume_id,
+            trace_effect_id: avatar_data.appearance.trace_effect_id,
             cur_vehicle_info: None,
             excel_info: Some(AvatarExcelInfo::default()),
             anim_hash: 0,

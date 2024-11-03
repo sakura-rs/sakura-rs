@@ -117,6 +117,8 @@ pub fn sync_avatar_data(players: Res<Players>, out: Res<MessageOutput>) {
                                 as u32,
                             avatar_type: 1, // TODO!
                             wearing_flycloak_id: a.wearing_flycloak_id,
+                            costume_id: a.costume_id,
+                            trace_effect_id: a.trace_effect_id,
                             fetter_info: Some(AvatarFetterInfo::default()),
                             skill_level_map: a.skill_level_map.clone(),
                             inherent_proud_skill_list: a.inherent_proud_skill_list.clone(),
@@ -164,6 +166,12 @@ pub fn sync_avatar_data(players: Res<Players>, out: Res<MessageOutput>) {
                 owned_costume_list: player_info
                     .avatar_module
                     .owned_costume_set
+                    .iter()
+                    .copied()
+                    .collect(),
+                owned_trace_effect_list: player_info
+                    .avatar_module
+                    .owned_trace_effect_set
                     .iter()
                     .copied()
                     .collect(),

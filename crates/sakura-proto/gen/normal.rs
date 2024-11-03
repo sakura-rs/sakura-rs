@@ -11367,6 +11367,8 @@ pub struct AvatarDataNotify {
     pub cur_avatar_team_id: u32,
     #[prost(uint64, tag = "9")]
     pub choose_avatar_guid: u64,
+    #[prost(uint32, repeated, tag = "10")]
+    pub owned_trace_effect_list: ::prost::alloc::vec::Vec<u32>,
 }
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(1608)]
@@ -11934,6 +11936,33 @@ pub struct Emdobldmbpf {
 pub struct MirrorAvatarDataUpdateNotify {
     #[prost(message, repeated, tag = "1")]
     pub avatar_list: ::prost::alloc::vec::Vec<AvatarInfo>,
+}
+#[derive(sakura_proto_derive::CmdID)]
+#[cmdid(1733)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AvatarChangeTraceEffectNotify {
+    #[prost(message, optional, tag = "1")]
+    pub entity_info: ::core::option::Option<SceneEntityInfo>,
+}
+#[derive(sakura_proto_derive::CmdID)]
+#[cmdid(1734)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AvatarChangeTraceEffectReq {
+    #[prost(uint64, tag = "1")]
+    pub avatar_guid: u64,
+    #[prost(uint32, tag = "2")]
+    pub trace_effect_id: u32,
+}
+#[derive(sakura_proto_derive::CmdID)]
+#[cmdid(1735)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AvatarChangeTraceEffectRsp {
+    #[prost(int32, tag = "1")]
+    pub retcode: i32,
+    #[prost(uint64, tag = "2")]
+    pub avatar_guid: u64,
+    #[prost(uint32, tag = "3")]
+    pub trace_effect_id: u32,
 }
 #[derive(sakura_proto_derive::CmdID)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -35809,6 +35838,8 @@ pub struct SceneAvatarInfo {
     pub excel_info: ::core::option::Option<AvatarExcelInfo>,
     #[prost(uint32, tag = "21")]
     pub anim_hash: u32,
+    #[prost(uint32, tag = "22")]
+    pub trace_effect_id: u32,
 }
 #[derive(sakura_proto_derive::CmdID)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -36784,6 +36815,8 @@ pub struct AvatarInfo {
     pub anim_hash: u32,
     #[prost(message, optional, tag = "27")]
     pub mirror_avatar_info: ::core::option::Option<MirrorAvatarInfo>,
+    #[prost(uint32, tag = "31")]
+    pub trace_effect_id: u32,
 }
 #[derive(sakura_proto_derive::CmdID)]
 #[derive(Clone, PartialEq, ::prost::Message)]
