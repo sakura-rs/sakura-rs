@@ -34,6 +34,7 @@ pub struct AvatarModuleInformation {
     pub avatar_map: HashMap<u64, AvatarInformation>,
     pub team_map: HashMap<u32, AvatarTeamInformation>,
     pub owned_flycloak_set: HashSet<u32>,
+    pub owned_costume_set: HashSet<u32>,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -55,6 +56,7 @@ pub struct AvatarInformation {
     pub skill_level_map: HashMap<u32, u32>,
     pub inherent_proud_skill_list: Vec<u32>,
     pub wearing_flycloak_id: u32,
+    pub costume_id: u32,
 }
 
 #[derive(Serialize, Deserialize)]

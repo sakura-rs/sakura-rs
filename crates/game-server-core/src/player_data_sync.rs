@@ -161,6 +161,12 @@ pub fn sync_avatar_data(players: Res<Players>, out: Res<MessageOutput>) {
                     .iter()
                     .copied()
                     .collect(),
+                owned_costume_list: player_info
+                    .avatar_module
+                    .owned_costume_set
+                    .iter()
+                    .copied()
+                    .collect(),
                 ..Default::default()
             },
         );

@@ -1,0 +1,31 @@
+use sakura_data_derive::FromBinary;
+
+#[derive(Debug, FromBinary)]
+pub struct AvatarCostumeExcelConfig {
+    pub skin_id: u32,
+    pub index_id: u32,
+    pub name: u32,
+    pub desc: u32,
+    pub item_id: u32,
+    pub character_id: u32,
+    pub json_name: String,
+    pub prefab_path_hash: u64,
+    pub prefab_remote_path_hash: u64,
+    pub prefab_npc_path_hash: u64,
+    pub animator_config_path_hash: u64,
+    pub prefab_manekin_path_hash: u64,
+    pub unk_1: u64,
+    pub controller_path_hash: u64,
+    pub controller_remote_path_hash: u64,
+    pub is_default: bool,
+    pub is_default_unlock: bool,
+    pub quality: u32,
+    pub hide: bool,
+    pub front_icon_name: String,
+    pub side_icon_name: String,
+    pub image_name_hash: u64,
+    pub domestic_hide_in_art_preview: bool,
+    pub oversea_hide_in_art_preview: bool,
+    pub unk_2: u64,
+    pub unk_3: u64,
+}

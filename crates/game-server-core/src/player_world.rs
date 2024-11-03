@@ -15,7 +15,7 @@ use sakura_message::{
 };
 use sakura_pathfinding::PathfindingPlugin;
 use sakura_persistence::{player_information::PlayerInformation, Players};
-use sakura_proto::PlayerLoginRsp;
+use sakura_proto::{PacketHead, PlayerLoginRsp};
 use sakura_scene::{common::WorldOwnerUID, ScenePlugin};
 use sakura_time::TimePlugin;
 use tracing::debug;
@@ -64,16 +64,20 @@ impl PlayerWorld {
         app.cleanup();
         app.update();
 
-        output.push(PlayerLoginRsp::default());
+        output.push(
+            sakura_proto::PacketHead::default(),
+            PlayerLoginRsp::default(),
+        );
+
         debug!("created world for player: {uid}");
 
         Self(app)
     }
 
-    pub fn add_packet(&mut self, player_uid: u32, cmd_id: u16, data: Box<[u8]>) {
+    pub fn add_packet(&mut self, head: PacketHead, cmd_id: u16, data: Box<[u8]>) {
         self.0
             .world_mut()
-            .send_event(ClientMessageEvent::new(player_uid, cmd_id, data));
+            .send_event(ClientMessageEvent::new(head, cmd_id, data));
     }
 
     pub fn update(&mut self) {

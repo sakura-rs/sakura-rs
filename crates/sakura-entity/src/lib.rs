@@ -1,4 +1,4 @@
-use avatar::AvatarEquipChangeEvent;
+use avatar::{AvatarCostumeChangeEvent, AvatarEquipChangeEvent};
 use bevy_app::prelude::*;
 use bevy_ecs::prelude::*;
 use common::{EntityCounter, FightProperties, LifeState, ProtocolEntityID, ToBeRemovedMarker};
@@ -25,7 +25,9 @@ impl Plugin for EntityPlugin {
     fn build(&self, app: &mut App) {
         app.insert_resource(EntityCounter::default())
             .add_event::<AvatarEquipChangeEvent>()
+            .add_event::<AvatarCostumeChangeEvent>()
             .add_event::<EntityDisappearEvent>()
+            .add_systems(Update, avatar::update_avatar_appearance)
             .add_systems(
                 Last,
                 (
@@ -33,6 +35,7 @@ impl Plugin for EntityPlugin {
                     notify_life_state_change,
                     notify_disappear_entities,
                     remove_marked_entities,
+                    avatar::notify_avatar_costume_change,
                     avatar::notify_appear_avatar_entities
                         .run_if(avatar::run_if_avatar_entities_appeared),
                     monster::notify_appear_monster_entities

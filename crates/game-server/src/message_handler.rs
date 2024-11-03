@@ -55,7 +55,7 @@ pub async fn on_message(state: &'static AppState, data: Box<[u8]>) {
                 );
 
                 state.logic_simulator.add_client_packet(
-                    packet.head.user_id,
+                    packet.head.clone(),
                     sub_cmd.message_id as u16,
                     sub_cmd.body.into(),
                     false,
@@ -67,7 +67,7 @@ pub async fn on_message(state: &'static AppState, data: Box<[u8]>) {
         cmd_id => {
             debug!("received packet with cmd_id: {cmd_id}");
             state.logic_simulator.add_client_packet(
-                packet.head().user_id,
+                packet.head(),
                 cmd_id,
                 packet.body().into(),
                 true,
@@ -99,9 +99,9 @@ async fn packet_sink(
     state: &'static AppState,
     user_id: u32,
     user_session_id: u32,
-    mut rx: mpsc::Receiver<(u16, Box<[u8]>)>,
+    mut rx: mpsc::Receiver<(u16, PacketHead, Box<[u8]>)>,
 ) {
-    while let Some((cmd_id, body)) = rx.recv().await {
+    while let Some((cmd_id, head, body)) = rx.recv().await {
         state
             .gate_server_socket
             .send(make_raw_packet(
@@ -109,7 +109,7 @@ async fn packet_sink(
                 PacketHead {
                     user_id,
                     user_session_id,
-                    ..Default::default()
+                    ..head
                 },
                 &body,
             ))

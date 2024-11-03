@@ -94,6 +94,17 @@ pub fn client_to_normal(
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
+        crate::client::ClientLoadingCostumeVerificationNotify::CMD_ID => {
+            let proto = crate::client::ClientLoadingCostumeVerificationNotify::decode(
+                body,
+            )?;
+            let proto: crate::normal::ClientLoadingCostumeVerificationNotify = proto
+                .into();
+            Ok((
+                crate::normal::ClientLoadingCostumeVerificationNotify::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
         crate::client::AvatarWearFlycloakRsp::CMD_ID => {
             let proto = crate::client::AvatarWearFlycloakRsp::decode(body)?;
             let proto: crate::normal::AvatarWearFlycloakRsp = proto.into();
@@ -302,6 +313,14 @@ pub fn client_to_normal(
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
+        crate::client::AvatarChangeCostumeNotify::CMD_ID => {
+            let proto = crate::client::AvatarChangeCostumeNotify::decode(body)?;
+            let proto: crate::normal::AvatarChangeCostumeNotify = proto.into();
+            Ok((
+                crate::normal::AvatarChangeCostumeNotify::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
         crate::client::EvtAvatarLockChairRsp::CMD_ID => {
             let proto = crate::client::EvtAvatarLockChairRsp::decode(body)?;
             let proto: crate::normal::EvtAvatarLockChairRsp = proto.into();
@@ -363,6 +382,14 @@ pub fn client_to_normal(
             let proto: crate::normal::SceneForceUnlockNotify = proto.into();
             Ok((
                 crate::normal::SceneForceUnlockNotify::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
+        crate::client::HomeAvatarCostumeChangeNotify::CMD_ID => {
+            let proto = crate::client::HomeAvatarCostumeChangeNotify::decode(body)?;
+            let proto: crate::normal::HomeAvatarCostumeChangeNotify = proto.into();
+            Ok((
+                crate::normal::HomeAvatarCostumeChangeNotify::CMD_ID,
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
@@ -502,6 +529,14 @@ pub fn client_to_normal(
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
+        crate::client::AvatarChangeCostumeReq::CMD_ID => {
+            let proto = crate::client::AvatarChangeCostumeReq::decode(body)?;
+            let proto: crate::normal::AvatarChangeCostumeReq = proto.into();
+            Ok((
+                crate::normal::AvatarChangeCostumeReq::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
         crate::client::PlayerEnterSceneNotify::CMD_ID => {
             let proto = crate::client::PlayerEnterSceneNotify::decode(body)?;
             let proto: crate::normal::PlayerEnterSceneNotify = proto.into();
@@ -563,6 +598,14 @@ pub fn client_to_normal(
             let proto: crate::normal::SetUpAvatarTeamRsp = proto.into();
             Ok((
                 crate::normal::SetUpAvatarTeamRsp::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
+        crate::client::AvatarChangeCostumeRsp::CMD_ID => {
+            let proto = crate::client::AvatarChangeCostumeRsp::decode(body)?;
+            let proto: crate::normal::AvatarChangeCostumeRsp = proto.into();
+            Ok((
+                crate::normal::AvatarChangeCostumeRsp::CMD_ID,
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
@@ -662,6 +705,17 @@ pub fn normal_to_client(
             let proto: crate::client::GetScenePointRsp = proto.into();
             Ok((
                 crate::client::GetScenePointRsp::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
+        crate::normal::ClientLoadingCostumeVerificationNotify::CMD_ID => {
+            let proto = crate::normal::ClientLoadingCostumeVerificationNotify::decode(
+                body,
+            )?;
+            let proto: crate::client::ClientLoadingCostumeVerificationNotify = proto
+                .into();
+            Ok((
+                crate::client::ClientLoadingCostumeVerificationNotify::CMD_ID,
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
@@ -873,6 +927,14 @@ pub fn normal_to_client(
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
+        crate::normal::AvatarChangeCostumeNotify::CMD_ID => {
+            let proto = crate::normal::AvatarChangeCostumeNotify::decode(body)?;
+            let proto: crate::client::AvatarChangeCostumeNotify = proto.into();
+            Ok((
+                crate::client::AvatarChangeCostumeNotify::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
         crate::normal::EvtAvatarLockChairRsp::CMD_ID => {
             let proto = crate::normal::EvtAvatarLockChairRsp::decode(body)?;
             let proto: crate::client::EvtAvatarLockChairRsp = proto.into();
@@ -934,6 +996,14 @@ pub fn normal_to_client(
             let proto: crate::client::SceneForceUnlockNotify = proto.into();
             Ok((
                 crate::client::SceneForceUnlockNotify::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
+        crate::normal::HomeAvatarCostumeChangeNotify::CMD_ID => {
+            let proto = crate::normal::HomeAvatarCostumeChangeNotify::decode(body)?;
+            let proto: crate::client::HomeAvatarCostumeChangeNotify = proto.into();
+            Ok((
+                crate::client::HomeAvatarCostumeChangeNotify::CMD_ID,
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
@@ -1073,6 +1143,14 @@ pub fn normal_to_client(
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }
+        crate::normal::AvatarChangeCostumeReq::CMD_ID => {
+            let proto = crate::normal::AvatarChangeCostumeReq::decode(body)?;
+            let proto: crate::client::AvatarChangeCostumeReq = proto.into();
+            Ok((
+                crate::client::AvatarChangeCostumeReq::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
         crate::normal::PlayerEnterSceneNotify::CMD_ID => {
             let proto = crate::normal::PlayerEnterSceneNotify::decode(body)?;
             let proto: crate::client::PlayerEnterSceneNotify = proto.into();
@@ -1134,6 +1212,14 @@ pub fn normal_to_client(
             let proto: crate::client::SetUpAvatarTeamRsp = proto.into();
             Ok((
                 crate::client::SetUpAvatarTeamRsp::CMD_ID,
+                proto.encode_to_vec().into_boxed_slice(),
+            ))
+        }
+        crate::normal::AvatarChangeCostumeRsp::CMD_ID => {
+            let proto = crate::normal::AvatarChangeCostumeRsp::decode(body)?;
+            let proto: crate::client::AvatarChangeCostumeRsp = proto.into();
+            Ok((
+                crate::client::AvatarChangeCostumeRsp::CMD_ID,
                 proto.encode_to_vec().into_boxed_slice(),
             ))
         }

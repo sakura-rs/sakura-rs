@@ -4,6 +4,7 @@ use crate::{command::LogicCommand, player_world::PlayerWorld};
 use common::time_util;
 use sakura_message::output::ClientOutput;
 use sakura_persistence::player_information::PlayerInformation;
+use sakura_proto::PacketHead;
 use std::sync::mpsc;
 
 #[derive(Clone)]
@@ -28,14 +29,14 @@ impl LogicSimulator {
 
     pub fn add_client_packet(
         &self,
-        player_uid: u32,
+        head: PacketHead,
         cmd_id: u16,
         data: Box<[u8]>,
         immediate_mode: bool,
     ) {
         self.0
             .send(LogicCommand::ClientInput {
-                uid: player_uid,
+                head,
                 cmd_id,
                 data,
                 immediate_mode,
@@ -72,14 +73,15 @@ fn simulation_loop(
                 );
             }
             ClientInput {
-                uid,
+                head,
                 cmd_id,
                 data,
                 immediate_mode,
             } => {
+                let uid = head.user_id;
                 if let Some(world_owner_uid) = player_uid_map.get(&uid) {
                     if let Some(world) = player_world_map.get_mut(world_owner_uid) {
-                        world.add_packet(uid, cmd_id, data);
+                        world.add_packet(head, cmd_id, data);
                         if immediate_mode {
                             world.update();
                         }

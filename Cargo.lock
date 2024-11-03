@@ -1855,6 +1855,7 @@ dependencies = [
  "common",
  "sakura-data",
  "sakura-message",
+ "sakura-persistence",
  "sakura-proto",
  "tracing",
 ]

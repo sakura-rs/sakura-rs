@@ -289,6 +289,17 @@ impl From<crate::normal::ForceUpdateInfo> for ForceUpdateInfo {
         }
     }
 }
+impl From<crate::normal::ClientLoadingCostumeVerificationNotify>
+for ClientLoadingCostumeVerificationNotify {
+    fn from(value: crate::normal::ClientLoadingCostumeVerificationNotify) -> Self {
+        Self {
+            costume_id: value.costume_id.into(),
+            prefab_hash: value.prefab_hash.into(),
+            guid: value.guid.into(),
+            ..Default::default()
+        }
+    }
+}
 impl From<crate::normal::AvatarTeam> for AvatarTeam {
     fn from(value: crate::normal::AvatarTeam) -> Self {
         Self {
@@ -416,6 +427,11 @@ impl From<crate::normal::AvatarDataNotify> for AvatarDataNotify {
                 .collect(),
             backup_avatar_team_order_list: value
                 .backup_avatar_team_order_list
+                .into_iter()
+                .map(|v| v.into())
+                .collect(),
+            owned_costume_list: value
+                .owned_costume_list
                 .into_iter()
                 .map(|v| v.into())
                 .collect(),
@@ -1250,6 +1266,14 @@ impl From<crate::normal::GadgetPlayInfo> for GadgetPlayInfo {
         }
     }
 }
+impl From<crate::normal::AvatarChangeCostumeNotify> for AvatarChangeCostumeNotify {
+    fn from(value: crate::normal::AvatarChangeCostumeNotify) -> Self {
+        Self {
+            entity_info: value.entity_info.map(|v| v.into()),
+            ..Default::default()
+        }
+    }
+}
 impl From<crate::normal::Material> for Material {
     fn from(value: crate::normal::Material) -> Self {
         Self {
@@ -1563,6 +1587,16 @@ impl From<crate::normal::SceneForceUnlockNotify> for SceneForceUnlockNotify {
         Self {
             is_add: value.is_add.into(),
             force_id_list: value.force_id_list.into_iter().map(|v| v.into()).collect(),
+            ..Default::default()
+        }
+    }
+}
+impl From<crate::normal::HomeAvatarCostumeChangeNotify>
+for HomeAvatarCostumeChangeNotify {
+    fn from(value: crate::normal::HomeAvatarCostumeChangeNotify) -> Self {
+        Self {
+            costume_id: value.costume_id.into(),
+            avatar_id: value.avatar_id.into(),
             ..Default::default()
         }
     }
@@ -2410,6 +2444,15 @@ impl From<crate::normal::MassivePropSyncInfo> for MassivePropSyncInfo {
         }
     }
 }
+impl From<crate::normal::AvatarChangeCostumeReq> for AvatarChangeCostumeReq {
+    fn from(value: crate::normal::AvatarChangeCostumeReq) -> Self {
+        Self {
+            costume_id: value.costume_id.into(),
+            avatar_guid: value.avatar_guid.into(),
+            ..Default::default()
+        }
+    }
+}
 impl From<crate::normal::BreakoutVector2> for BreakoutVector2 {
     fn from(value: crate::normal::BreakoutVector2) -> Self {
         Self {
@@ -2644,6 +2687,16 @@ impl From<crate::normal::SetUpAvatarTeamRsp> for SetUpAvatarTeamRsp {
                 .map(|v| v.into())
                 .collect(),
             team_id: value.team_id.into(),
+            retcode: value.retcode.into(),
+            ..Default::default()
+        }
+    }
+}
+impl From<crate::normal::AvatarChangeCostumeRsp> for AvatarChangeCostumeRsp {
+    fn from(value: crate::normal::AvatarChangeCostumeRsp) -> Self {
+        Self {
+            costume_id: value.costume_id.into(),
+            avatar_guid: value.avatar_guid.into(),
             retcode: value.retcode.into(),
             ..Default::default()
         }

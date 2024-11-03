@@ -2,9 +2,9 @@ use std::collections::HashMap;
 
 use common::time_util;
 use sakura_data::excel::{
-    avatar_excel_config_collection, avatar_flycloak_excel_config_collection,
-    avatar_skill_depot_excel_config_collection, weapon_excel_config_collection, AvatarExcelConfig,
-    AvatarUseType,
+    avatar_costume_excel_config_collection, avatar_excel_config_collection,
+    avatar_flycloak_excel_config_collection, avatar_skill_depot_excel_config_collection,
+    weapon_excel_config_collection, AvatarExcelConfig, AvatarUseType,
 };
 
 use sakura_persistence::player_information::*;
@@ -27,6 +27,10 @@ pub fn create_default_player_information(uid: u32, nick_name: String) -> PlayerI
             team_map: HashMap::new(),
             owned_flycloak_set: avatar_flycloak_excel_config_collection::iter()
                 .map(|c| c.flycloak_id)
+                .collect(),
+            owned_costume_set: avatar_costume_excel_config_collection::iter()
+                .filter(|c| !c.is_default)
+                .map(|c| c.skin_id)
                 .collect(),
         },
         item_map: HashMap::new(),
@@ -129,6 +133,7 @@ fn add_avatar_and_weapon(player: &mut PlayerInformation, avatar: &AvatarExcelCon
             skill_level_map,
             inherent_proud_skill_list,
             wearing_flycloak_id: DEFAULT_FLYCLOAK_ID,
+            costume_id: 0,
         },
     );
 

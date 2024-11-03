@@ -96,6 +96,7 @@ async fn handle_packet(
     debug!("received packet: {}", hex::encode(&data));
 
     let packet = RawPacket::new(&data)?;
+    let head = packet.head();
     let (cmd_id, body) = packet::client_to_normal(packet.cmd_id(), packet.body())?;
 
     match cmd_id {
@@ -161,7 +162,7 @@ async fn handle_packet(
                     PacketHead {
                         user_session_id: session.connection.conv,
                         user_id: session.player_uid.get().copied().unwrap_or_default(),
-                        ..Default::default()
+                        ..head
                     },
                     &body,
                 ))

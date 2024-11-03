@@ -1,7 +1,6 @@
 use sakura_proto::{
     packet::normal_to_client,
     raw_packet::{make_raw_packet, RawPacket},
-    PacketHead,
 };
 use tracing::{debug, warn};
 
@@ -14,12 +13,13 @@ pub async fn on_message(state: &'static AppState, data: Box<[u8]>) {
         return;
     };
 
-    let session_id = packet.head().user_session_id;
+    let head = packet.head();
+    let session_id = head.user_session_id;
 
     if let Some(session) = state.sessions.get(&session_id) {
         match normal_to_client(packet.cmd_id(), packet.body()) {
             Ok((cmd_id, data)) => {
-                let mut data = make_raw_packet(cmd_id, PacketHead::default(), &data);
+                let mut data = make_raw_packet(cmd_id, head, &data);
                 util::xor_packet(
                     session.xorpad.get(),
                     state.initial_xorpad.as_ref(),

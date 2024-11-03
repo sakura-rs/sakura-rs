@@ -1,5 +1,6 @@
 use sakura_message::output::ClientOutput;
 use sakura_persistence::player_information::PlayerInformation;
+use sakura_proto::PacketHead;
 
 pub enum LogicCommand {
     CreateWorld {
@@ -7,7 +8,7 @@ pub enum LogicCommand {
         output: ClientOutput,
     },
     ClientInput {
-        uid: u32,
+        head: PacketHead,
         cmd_id: u16,
         data: Box<[u8]>,
         immediate_mode: bool,

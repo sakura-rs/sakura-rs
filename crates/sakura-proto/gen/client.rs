@@ -4128,11 +4128,11 @@ pub struct ForceUpdateInfo {
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(22470)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Flbhgdcpebg {
+pub struct ClientLoadingCostumeVerificationNotify {
     #[prost(uint32, tag = "6")]
     pub costume_id: u32,
     #[prost(uint64, tag = "3")]
-    pub dljodpnohgd: u64,
+    pub prefab_hash: u64,
     #[prost(uint64, tag = "5")]
     pub guid: u64,
 }
@@ -7044,11 +7044,11 @@ pub struct AvatarDataNotify {
     #[prost(uint32, repeated, tag = "2")]
     pub backup_avatar_team_order_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint32, repeated, tag = "3")]
-    pub ophdokofiho: ::prost::alloc::vec::Vec<u32>,
+    pub owned_costume_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(uint64, tag = "4")]
     pub choose_avatar_guid: u64,
     #[prost(uint32, repeated, tag = "5")]
-    pub cpeajkcgpio: ::prost::alloc::vec::Vec<u32>,
+    pub owned_trace_effect_list: ::prost::alloc::vec::Vec<u32>,
     #[prost(map = "uint32, message", tag = "6")]
     pub avatar_team_map: ::std::collections::HashMap<u32, AvatarTeam>,
     #[prost(message, repeated, tag = "9")]
@@ -20156,9 +20156,9 @@ pub mod gadget_play_info {
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(24457)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Coocgbbbiio {
+pub struct AvatarChangeCostumeNotify {
     #[prost(message, optional, tag = "11")]
-    pub ekdkeobgnmm: ::core::option::Option<SceneEntityInfo>,
+    pub entity_info: ::core::option::Option<SceneEntityInfo>,
 }
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(3411)]
@@ -25399,7 +25399,7 @@ pub struct SceneForceUnlockNotify {
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(5695)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Pbmdicgahkn {
+pub struct HomeAvatarCostumeChangeNotify {
     #[prost(uint32, tag = "5")]
     pub costume_id: u32,
     #[prost(uint32, tag = "14")]
@@ -27272,9 +27272,9 @@ pub struct Abmcjlmomkg {
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(27168)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Ehiogclpann {
+pub struct AvatarChangeTraceEffectNotify {
     #[prost(message, optional, tag = "4")]
-    pub ekdkeobgnmm: ::core::option::Option<SceneEntityInfo>,
+    pub entity_info: ::core::option::Option<SceneEntityInfo>,
 }
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(25876)]
@@ -41994,7 +41994,7 @@ pub struct Ieokmefncfg {
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(20708)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Anagafpkcki {
+pub struct AvatarChangeCostumeReq {
     #[prost(uint32, tag = "13")]
     pub costume_id: u32,
     #[prost(uint64, tag = "10")]
@@ -50336,7 +50336,7 @@ pub struct Ffajmhiamje {
 #[derive(sakura_proto_derive::CmdID)]
 #[cmdid(25161)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Beggfkckgif {
+pub struct AvatarChangeCostumeRsp {
     #[prost(uint32, tag = "3")]
     pub costume_id: u32,
     #[prost(uint64, tag = "14")]
