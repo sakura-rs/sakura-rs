@@ -1,0 +1,16 @@
+[package]
+name = "mavuika-entity"
+edition = "2021"
+version.workspace = true
+
+[dependencies]
+bevy_app.workspace = true
+bevy_ecs.workspace = true
+bevy_derive.workspace = true
+tracing.workspace = true
+
+common.workspace = true
+mavuika-data.workspace = true
+mavuika-persistence.workspace = true
+mavuika-message.workspace = true
+mavuika-proto.workspace = true

@@ -1,5 +1,5 @@
 [package]
-name = "sakura-dispatch-server"
+name = "mavuika-dispatch-server"
 edition = "2021"
 version.workspace = true
 
@@ -22,5 +22,5 @@ anyhow.workspace = true
 thiserror.workspace = true
 
 common.workspace = true
-sakura-proto.workspace = true
-sakura-encryption.workspace = true
+mavuika-proto.workspace = true
+mavuika-encryption.workspace = true

@@ -1,5 +1,5 @@
-use sakura_encryption::xor::{MhyXorpad, XorpadGenerationMethod};
-use sakura_proto::{GetPlayerTokenReq, GetPlayerTokenRsp, Retcode};
+use mavuika_encryption::xor::{MhyXorpad, XorpadGenerationMethod};
+use mavuika_proto::{GetPlayerTokenReq, GetPlayerTokenRsp, Retcode};
 use rand::RngCore;
 use tracing::{debug, error};
 

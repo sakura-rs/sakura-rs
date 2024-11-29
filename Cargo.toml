@@ -1,32 +1,32 @@
 [workspace]
 members = [
-	"crates/sakura-data",
-	"crates/sakura-data/sakura-data-derive",
-	"crates/sakura-database",
-	"crates/sakura-encryption",
-	"crates/sakura-entity",
-	"crates/sakura-network",
-	"crates/sakura-proto",
-	"crates/sakura-proto/sakura-proto-derive",
-	"crates/sakura-scene",
-	"crates/sakura-message",
+	"crates/mavuika-data",
+	"crates/mavuika-data/mavuika-data-derive",
+	"crates/mavuika-database",
+	"crates/mavuika-encryption",
+	"crates/mavuika-entity",
+	"crates/mavuika-network",
+	"crates/mavuika-proto",
+	"crates/mavuika-proto/mavuika-proto-derive",
+	"crates/mavuika-scene",
+	"crates/mavuika-message",
 	"crates/common",
 	"crates/dispatch-server",
 	"crates/game-server",
 	"crates/gate-server",
 	"crates/gate-server/kcp",
 	"crates/sdk-server",
-	"crates/sakura-persistence",
+	"crates/mavuika-persistence",
 	"crates/game-server-core",
-	"crates/sakura-time",
-	"crates/sakura-map",
-	"crates/sakura-command",
-	"crates/sakura-combat",
-	"crates/sakura-luashell",
-	"crates/sakura-environment",
-	"crates/sakura-pathfinding",
-	"crates/sakura-inventory",
-	"crates/sakura-avatar",
+	"crates/mavuika-time",
+	"crates/mavuika-map",
+	"crates/mavuika-command",
+	"crates/mavuika-combat",
+	"crates/mavuika-luashell",
+	"crates/mavuika-environment",
+	"crates/mavuika-pathfinding",
+	"crates/mavuika-inventory",
+	"crates/mavuika-avatar",
 ]
 resolver = "2"
 
@@ -92,24 +92,24 @@ tracing-subscriber = "0.3.18"
 
 # Internal
 common = { path = "crates/common" }
-sakura-data = { path = "crates/sakura-data" }
-sakura-network = { path = "crates/sakura-network" }
-sakura-database = { path = "crates/sakura-database" }
-sakura-encryption = { path = "crates/sakura-encryption" }
-sakura-proto = { path = "crates/sakura-proto" }
-sakura-entity = { path = "crates/sakura-entity" }
-sakura-avatar = { path = "crates/sakura-avatar" }
-sakura-scene = { path = "crates/sakura-scene" }
-sakura-environment = { path = "crates/sakura-environment" }
-sakura-pathfinding = { path = "crates/sakura-pathfinding" }
-sakura-combat = { path = "crates/sakura-combat" }
-sakura-time = { path = "crates/sakura-time" }
-sakura-map = { path = "crates/sakura-map" }
-sakura-inventory = { path = "crates/sakura-inventory" }
-sakura-command = { path = "crates/sakura-command" }
-sakura-message = { path = "crates/sakura-message" }
-sakura-persistence = { path = "crates/sakura-persistence" }
-sakura-luashell = { path = "crates/sakura-luashell" }
+mavuika-data = { path = "crates/mavuika-data" }
+mavuika-network = { path = "crates/mavuika-network" }
+mavuika-database = { path = "crates/mavuika-database" }
+mavuika-encryption = { path = "crates/mavuika-encryption" }
+mavuika-proto = { path = "crates/mavuika-proto" }
+mavuika-entity = { path = "crates/mavuika-entity" }
+mavuika-avatar = { path = "crates/mavuika-avatar" }
+mavuika-scene = { path = "crates/mavuika-scene" }
+mavuika-environment = { path = "crates/mavuika-environment" }
+mavuika-pathfinding = { path = "crates/mavuika-pathfinding" }
+mavuika-combat = { path = "crates/mavuika-combat" }
+mavuika-time = { path = "crates/mavuika-time" }
+mavuika-map = { path = "crates/mavuika-map" }
+mavuika-inventory = { path = "crates/mavuika-inventory" }
+mavuika-command = { path = "crates/mavuika-command" }
+mavuika-message = { path = "crates/mavuika-message" }
+mavuika-persistence = { path = "crates/mavuika-persistence" }
+mavuika-luashell = { path = "crates/mavuika-luashell" }
 game-server-core = { path = "crates/game-server-core" }
 
 [workspace.lints.clippy]

@@ -1,0 +1,11 @@
+[package]
+name = "mavuika-luashell"
+edition = "2021"
+version.workspace = true
+
+[dependencies]
+bevy_app.workspace = true
+bevy_ecs.workspace = true
+
+mavuika-proto.workspace = true
+mavuika-message.workspace = true

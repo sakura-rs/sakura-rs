@@ -758,21 +758,21 @@ dependencies = [
  "bevy_derive",
  "bevy_ecs",
  "common",
- "sakura-avatar",
- "sakura-combat",
- "sakura-command",
- "sakura-data",
- "sakura-entity",
- "sakura-environment",
- "sakura-inventory",
- "sakura-luashell",
- "sakura-map",
- "sakura-message",
- "sakura-pathfinding",
- "sakura-persistence",
- "sakura-proto",
- "sakura-scene",
- "sakura-time",
+ "mavuika-avatar",
+ "mavuika-combat",
+ "mavuika-command",
+ "mavuika-data",
+ "mavuika-entity",
+ "mavuika-environment",
+ "mavuika-inventory",
+ "mavuika-luashell",
+ "mavuika-map",
+ "mavuika-message",
+ "mavuika-pathfinding",
+ "mavuika-persistence",
+ "mavuika-proto",
+ "mavuika-scene",
+ "mavuika-time",
  "serde",
  "serde_json",
  "thiserror",
@@ -1105,6 +1105,342 @@ name = "matchit"
 version = "0.7.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0e7465ac9959cc2b1404e8e2367b43684a6d13790fe23056cc8c6c5a6b7bcb94"
+
+[[package]]
+name = "mavuika-avatar"
+version = "0.0.1"
+dependencies = [
+ "bevy_app",
+ "bevy_ecs",
+ "mavuika-data",
+ "mavuika-entity",
+ "mavuika-message",
+ "mavuika-persistence",
+ "mavuika-proto",
+ "tracing",
+]
+
+[[package]]
+name = "mavuika-combat"
+version = "0.0.1"
+dependencies = [
+ "bevy_app",
+ "bevy_ecs",
+ "mavuika-data",
+ "mavuika-entity",
+ "mavuika-message",
+ "mavuika-persistence",
+ "mavuika-proto",
+ "tracing",
+]
+
+[[package]]
+name = "mavuika-command"
+version = "0.0.1"
+dependencies = [
+ "bevy_app",
+ "bevy_ecs",
+ "mavuika-data",
+ "mavuika-entity",
+ "mavuika-persistence",
+ "mavuika-scene",
+ "rand",
+ "tracing",
+]
+
+[[package]]
+name = "mavuika-data"
+version = "0.0.1"
+dependencies = [
+ "byteorder",
+ "mavuika-data-derive",
+ "paste",
+ "varint-rs",
+]
+
+[[package]]
+name = "mavuika-data-derive"
+version = "0.1.0"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "mavuika-database"
+version = "0.0.1"
+dependencies = [
+ "password-hash",
+ "pbkdf2",
+ "rand",
+ "regex",
+ "serde",
+ "serde_json",
+ "sqlx",
+ "thiserror",
+]
+
+[[package]]
+name = "mavuika-dispatch-server"
+version = "0.0.1"
+dependencies = [
+ "anyhow",
+ "axum",
+ "axum-server",
+ "common",
+ "mavuika-encryption",
+ "mavuika-proto",
+ "rbase64",
+ "serde",
+ "serde_json",
+ "thiserror",
+ "tokio",
+ "tracing",
+]
+
+[[package]]
+name = "mavuika-encryption"
+version = "0.0.1"
+dependencies = [
+ "byteorder",
+ "common",
+ "rand",
+ "rand_mt",
+ "rsa",
+ "thiserror",
+]
+
+[[package]]
+name = "mavuika-entity"
+version = "0.0.1"
+dependencies = [
+ "bevy_app",
+ "bevy_derive",
+ "bevy_ecs",
+ "common",
+ "mavuika-data",
+ "mavuika-message",
+ "mavuika-persistence",
+ "mavuika-proto",
+ "tracing",
+]
+
+[[package]]
+name = "mavuika-environment"
+version = "0.0.1"
+dependencies = [
+ "bevy_app",
+ "bevy_ecs",
+ "mavuika-entity",
+ "mavuika-message",
+ "mavuika-proto",
+ "tracing",
+]
+
+[[package]]
+name = "mavuika-game-server"
+version = "0.0.1"
+dependencies = [
+ "anyhow",
+ "bevy_app",
+ "bevy_derive",
+ "bevy_ecs",
+ "byteorder",
+ "common",
+ "dashmap 6.1.0",
+ "game-server-core",
+ "hex",
+ "mavuika-data",
+ "mavuika-database",
+ "mavuika-message",
+ "mavuika-network",
+ "mavuika-persistence",
+ "mavuika-proto",
+ "paste",
+ "rand",
+ "serde",
+ "serde_json",
+ "thiserror",
+ "tokio",
+ "tracing",
+]
+
+[[package]]
+name = "mavuika-gate-server"
+version = "0.0.1"
+dependencies = [
+ "anyhow",
+ "byteorder",
+ "common",
+ "dashmap 6.1.0",
+ "hex",
+ "kcp",
+ "mavuika-database",
+ "mavuika-encryption",
+ "mavuika-network",
+ "mavuika-proto",
+ "rand",
+ "rbase64",
+ "serde",
+ "serde_json",
+ "thiserror",
+ "tokio",
+ "tracing",
+]
+
+[[package]]
+name = "mavuika-inventory"
+version = "0.0.1"
+dependencies = [
+ "bevy_app",
+ "bevy_ecs",
+ "mavuika-data",
+ "mavuika-entity",
+ "mavuika-message",
+ "mavuika-persistence",
+ "mavuika-proto",
+ "tracing",
+]
+
+[[package]]
+name = "mavuika-luashell"
+version = "0.0.1"
+dependencies = [
+ "bevy_app",
+ "bevy_ecs",
+ "mavuika-message",
+ "mavuika-proto",
+]
+
+[[package]]
+name = "mavuika-map"
+version = "0.0.1"
+dependencies = [
+ "bevy_app",
+ "bevy_ecs",
+ "mavuika-command",
+ "mavuika-data",
+ "mavuika-message",
+ "mavuika-persistence",
+ "mavuika-proto",
+ "tracing",
+]
+
+[[package]]
+name = "mavuika-message"
+version = "0.0.1"
+dependencies = [
+ "bevy_ecs",
+ "mavuika-proto",
+ "tokio",
+]
+
+[[package]]
+name = "mavuika-network"
+version = "0.0.1"
+dependencies = [
+ "futures",
+ "tokio",
+ "tracing",
+ "zeromq",
+]
+
+[[package]]
+name = "mavuika-pathfinding"
+version = "0.0.1"
+dependencies = [
+ "bevy_app",
+ "bevy_ecs",
+ "mavuika-message",
+ "mavuika-persistence",
+ "mavuika-proto",
+ "tracing",
+]
+
+[[package]]
+name = "mavuika-persistence"
+version = "0.0.1"
+dependencies = [
+ "bevy_ecs",
+ "serde",
+]
+
+[[package]]
+name = "mavuika-proto"
+version = "0.0.1"
+dependencies = [
+ "byteorder",
+ "hex",
+ "mavuika-proto-derive",
+ "num_enum",
+ "prettyplease",
+ "prost",
+ "prost-build",
+ "prost-types",
+ "quote",
+ "syn",
+ "thiserror",
+]
+
+[[package]]
+name = "mavuika-proto-derive"
+version = "0.1.0"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "mavuika-scene"
+version = "0.0.1"
+dependencies = [
+ "bevy_app",
+ "bevy_derive",
+ "bevy_ecs",
+ "common",
+ "mavuika-data",
+ "mavuika-entity",
+ "mavuika-message",
+ "mavuika-persistence",
+ "mavuika-proto",
+ "paste",
+ "rand",
+ "tracing",
+]
+
+[[package]]
+name = "mavuika-sdk-server"
+version = "0.0.1"
+dependencies = [
+ "anyhow",
+ "axum",
+ "axum-server",
+ "common",
+ "mavuika-database",
+ "rbase64",
+ "rsa",
+ "serde",
+ "serde_json",
+ "thiserror",
+ "tokio",
+ "tracing",
+]
+
+[[package]]
+name = "mavuika-time"
+version = "0.0.1"
+dependencies = [
+ "bevy_app",
+ "bevy_ecs",
+ "common",
+ "mavuika-message",
+ "mavuika-persistence",
+ "mavuika-proto",
+ "mavuika-scene",
+ "tracing",
+]
 
 [[package]]
 name = "md-5"
@@ -1739,342 +2075,6 @@ name = "ryu"
 version = "1.0.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f3cb5ba0dc43242ce17de99c180e96db90b235b8a9fdc9543c96d2209116bd9f"
-
-[[package]]
-name = "sakura-avatar"
-version = "0.0.1"
-dependencies = [
- "bevy_app",
- "bevy_ecs",
- "sakura-data",
- "sakura-entity",
- "sakura-message",
- "sakura-persistence",
- "sakura-proto",
- "tracing",
-]
-
-[[package]]
-name = "sakura-combat"
-version = "0.0.1"
-dependencies = [
- "bevy_app",
- "bevy_ecs",
- "sakura-data",
- "sakura-entity",
- "sakura-message",
- "sakura-persistence",
- "sakura-proto",
- "tracing",
-]
-
-[[package]]
-name = "sakura-command"
-version = "0.0.1"
-dependencies = [
- "bevy_app",
- "bevy_ecs",
- "rand",
- "sakura-data",
- "sakura-entity",
- "sakura-persistence",
- "sakura-scene",
- "tracing",
-]
-
-[[package]]
-name = "sakura-data"
-version = "0.0.1"
-dependencies = [
- "byteorder",
- "paste",
- "sakura-data-derive",
- "varint-rs",
-]
-
-[[package]]
-name = "sakura-data-derive"
-version = "0.1.0"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn",
-]
-
-[[package]]
-name = "sakura-database"
-version = "0.0.1"
-dependencies = [
- "password-hash",
- "pbkdf2",
- "rand",
- "regex",
- "serde",
- "serde_json",
- "sqlx",
- "thiserror",
-]
-
-[[package]]
-name = "sakura-dispatch-server"
-version = "0.0.1"
-dependencies = [
- "anyhow",
- "axum",
- "axum-server",
- "common",
- "rbase64",
- "sakura-encryption",
- "sakura-proto",
- "serde",
- "serde_json",
- "thiserror",
- "tokio",
- "tracing",
-]
-
-[[package]]
-name = "sakura-encryption"
-version = "0.0.1"
-dependencies = [
- "byteorder",
- "common",
- "rand",
- "rand_mt",
- "rsa",
- "thiserror",
-]
-
-[[package]]
-name = "sakura-entity"
-version = "0.0.1"
-dependencies = [
- "bevy_app",
- "bevy_derive",
- "bevy_ecs",
- "common",
- "sakura-data",
- "sakura-message",
- "sakura-persistence",
- "sakura-proto",
- "tracing",
-]
-
-[[package]]
-name = "sakura-environment"
-version = "0.0.1"
-dependencies = [
- "bevy_app",
- "bevy_ecs",
- "sakura-entity",
- "sakura-message",
- "sakura-proto",
- "tracing",
-]
-
-[[package]]
-name = "sakura-game-server"
-version = "0.0.1"
-dependencies = [
- "anyhow",
- "bevy_app",
- "bevy_derive",
- "bevy_ecs",
- "byteorder",
- "common",
- "dashmap 6.1.0",
- "game-server-core",
- "hex",
- "paste",
- "rand",
- "sakura-data",
- "sakura-database",
- "sakura-message",
- "sakura-network",
- "sakura-persistence",
- "sakura-proto",
- "serde",
- "serde_json",
- "thiserror",
- "tokio",
- "tracing",
-]
-
-[[package]]
-name = "sakura-gate-server"
-version = "0.0.1"
-dependencies = [
- "anyhow",
- "byteorder",
- "common",
- "dashmap 6.1.0",
- "hex",
- "kcp",
- "rand",
- "rbase64",
- "sakura-database",
- "sakura-encryption",
- "sakura-network",
- "sakura-proto",
- "serde",
- "serde_json",
- "thiserror",
- "tokio",
- "tracing",
-]
-
-[[package]]
-name = "sakura-inventory"
-version = "0.0.1"
-dependencies = [
- "bevy_app",
- "bevy_ecs",
- "sakura-data",
- "sakura-entity",
- "sakura-message",
- "sakura-persistence",
- "sakura-proto",
- "tracing",
-]
-
-[[package]]
-name = "sakura-luashell"
-version = "0.0.1"
-dependencies = [
- "bevy_app",
- "bevy_ecs",
- "sakura-message",
- "sakura-proto",
-]
-
-[[package]]
-name = "sakura-map"
-version = "0.0.1"
-dependencies = [
- "bevy_app",
- "bevy_ecs",
- "sakura-command",
- "sakura-data",
- "sakura-message",
- "sakura-persistence",
- "sakura-proto",
- "tracing",
-]
-
-[[package]]
-name = "sakura-message"
-version = "0.0.1"
-dependencies = [
- "bevy_ecs",
- "sakura-proto",
- "tokio",
-]
-
-[[package]]
-name = "sakura-network"
-version = "0.0.1"
-dependencies = [
- "futures",
- "tokio",
- "tracing",
- "zeromq",
-]
-
-[[package]]
-name = "sakura-pathfinding"
-version = "0.0.1"
-dependencies = [
- "bevy_app",
- "bevy_ecs",
- "sakura-message",
- "sakura-persistence",
- "sakura-proto",
- "tracing",
-]
-
-[[package]]
-name = "sakura-persistence"
-version = "0.0.1"
-dependencies = [
- "bevy_ecs",
- "serde",
-]
-
-[[package]]
-name = "sakura-proto"
-version = "0.0.1"
-dependencies = [
- "byteorder",
- "hex",
- "num_enum",
- "prettyplease",
- "prost",
- "prost-build",
- "prost-types",
- "quote",
- "sakura-proto-derive",
- "syn",
- "thiserror",
-]
-
-[[package]]
-name = "sakura-proto-derive"
-version = "0.1.0"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn",
-]
-
-[[package]]
-name = "sakura-scene"
-version = "0.0.1"
-dependencies = [
- "bevy_app",
- "bevy_derive",
- "bevy_ecs",
- "common",
- "paste",
- "rand",
- "sakura-data",
- "sakura-entity",
- "sakura-message",
- "sakura-persistence",
- "sakura-proto",
- "tracing",
-]
-
-[[package]]
-name = "sakura-sdk-server"
-version = "0.0.1"
-dependencies = [
- "anyhow",
- "axum",
- "axum-server",
- "common",
- "rbase64",
- "rsa",
- "sakura-database",
- "serde",
- "serde_json",
- "thiserror",
- "tokio",
- "tracing",
-]
-
-[[package]]
-name = "sakura-time"
-version = "0.0.1"
-dependencies = [
- "bevy_app",
- "bevy_ecs",
- "common",
- "sakura-message",
- "sakura-persistence",
- "sakura-proto",
- "sakura-scene",
- "tracing",
-]
 
 [[package]]
 name = "scopeguard"

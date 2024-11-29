@@ -1,5 +1,5 @@
-use sakura_message::output::ClientOutput;
-use sakura_proto::{
+use mavuika_message::output::ClientOutput;
+use mavuika_proto::{
     raw_packet::{make_raw_packet, RawPacket},
     CmdID, PacketHead, PlayerLoginReq, UnionCmdNotify,
 };

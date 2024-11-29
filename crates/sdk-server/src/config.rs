@@ -1,5 +1,5 @@
 use common::TomlConfig;
-use sakura_database::DatabaseSettings;
+use mavuika_database::DatabaseSettings;
 use serde::Deserialize;
 
 #[derive(Deserialize)]

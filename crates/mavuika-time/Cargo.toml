@@ -1,0 +1,15 @@
+[package]
+name = "mavuika-time"
+edition = "2021"
+version.workspace = true
+
+[dependencies]
+bevy_app.workspace = true
+bevy_ecs.workspace = true
+tracing.workspace = true
+
+common.workspace = true
+mavuika-proto.workspace = true
+mavuika-scene.workspace = true
+mavuika-message.workspace = true
+mavuika-persistence.workspace = true

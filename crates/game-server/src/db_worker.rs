@@ -1,5 +1,5 @@
-use sakura_database::{sql_op, DbConnection};
-use sakura_persistence::player_information::PlayerInformation;
+use mavuika_database::{sql_op, DbConnection};
+use mavuika_persistence::player_information::PlayerInformation;
 use tokio::{
     select,
     sync::{mpsc, oneshot},
@@ -49,11 +49,11 @@ async fn db_work_loop(
                         // as of early development state, player info schema will change from time to time
                         // it's better to replace it with default one everytime it changes, for now
                         warn!("failed to deserialize player data (uid: {uid}), replacing with default, error: {err}");
-                        player_info_util::create_default_player_information(uid, String::from("sakura-rs"))
+                        player_info_util::create_default_player_information(uid, String::from("mavuika-rs"))
                     })),
                     Ok(None) => Some(player_info_util::create_default_player_information(
                         uid,
-                        String::from("sakura-rs"),
+                        String::from("mavuika-rs"),
                     )),
                     Err(_) => None,
                 };

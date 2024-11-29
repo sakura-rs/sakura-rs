@@ -1,0 +1,10 @@
+[package]
+name = "mavuika-network"
+edition = "2021"
+version.workspace = true
+
+[dependencies]
+tokio.workspace = true
+futures.workspace = true
+zeromq.workspace = true
+tracing.workspace = true

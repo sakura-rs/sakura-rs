@@ -5,8 +5,8 @@ use axum::{
     routing::get,
     Router,
 };
-use sakura_encryption::rsa::RsaKeyPair;
-use sakura_proto::{
+use mavuika_encryption::rsa::RsaKeyPair;
+use mavuika_proto::{
     Protobuf, QueryCurrRegionHttpRsp, QueryRegionListHttpRsp, RegionInfo, RegionSimpleInfo,
 };
 use serde::Deserialize;

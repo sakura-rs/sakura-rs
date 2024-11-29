@@ -1,0 +1,15 @@
+[package]
+name = "mavuika-map"
+edition = "2021"
+version.workspace = true
+
+[dependencies]
+bevy_app.workspace = true
+bevy_ecs.workspace = true
+tracing.workspace = true
+
+mavuika-data.workspace = true
+mavuika-command.workspace = true
+mavuika-proto.workspace = true
+mavuika-message.workspace = true
+mavuika-persistence.workspace = true

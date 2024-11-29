@@ -1,5 +1,5 @@
 [package]
-name = "sakura-game-server"
+name = "mavuika-game-server"
 edition = "2021"
 version.workspace = true
 
@@ -33,9 +33,9 @@ paste.workspace = true
 # Internal
 common.workspace = true
 game-server-core.workspace = true
-sakura-database.workspace = true
-sakura-message.workspace = true
-sakura-persistence.workspace = true
-sakura-data.workspace = true
-sakura-network.workspace = true
-sakura-proto.workspace = true
+mavuika-database.workspace = true
+mavuika-message.workspace = true
+mavuika-persistence.workspace = true
+mavuika-data.workspace = true
+mavuika-network.workspace = true
+mavuika-proto.workspace = true

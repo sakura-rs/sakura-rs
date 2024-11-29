@@ -1,5 +1,5 @@
 use axum::{extract::State, routing::post, Json, Router};
-use sakura_database::{sql_op, DbError};
+use mavuika_database::{sql_op, DbError};
 use serde::{Deserialize, Serialize};
 
 use crate::AppState;

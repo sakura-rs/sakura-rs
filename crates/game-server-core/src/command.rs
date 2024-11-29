@@ -1,6 +1,6 @@
-use sakura_message::output::ClientOutput;
-use sakura_persistence::player_information::PlayerInformation;
-use sakura_proto::PacketHead;
+use mavuika_message::output::ClientOutput;
+use mavuika_persistence::player_information::PlayerInformation;
+use mavuika_proto::PacketHead;
 
 pub enum LogicCommand {
     CreateWorld {

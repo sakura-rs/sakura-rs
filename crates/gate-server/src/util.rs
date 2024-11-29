@@ -1,7 +1,7 @@
 use tracing::error;
 
-use sakura_database::{sql_op, DbConnection, DbError};
-use sakura_encryption::xor::MhyXorpad;
+use mavuika_database::{sql_op, DbConnection, DbError};
+use mavuika_encryption::xor::MhyXorpad;
 
 pub fn xor_packet(
     session_xorpad: Option<&MhyXorpad>,

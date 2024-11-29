@@ -1,0 +1,11 @@
+[package]
+name = "mavuika-data"
+edition = "2021"
+version.workspace = true
+
+[dependencies]
+varint-rs.workspace = true
+byteorder.workspace = true
+paste.workspace = true
+
+mavuika-data-derive = { path = "mavuika-data-derive" }

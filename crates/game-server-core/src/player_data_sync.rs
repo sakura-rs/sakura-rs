@@ -1,14 +1,14 @@
 use bevy_app::prelude::*;
 use bevy_ecs::prelude::*;
 use common::time_util;
-use sakura_data::excel;
-use sakura_entity::{
+use mavuika_data::excel;
+use mavuika_entity::{
     common::{create_fight_props, LifeState},
     int_prop_map,
 };
-use sakura_message::output::MessageOutput;
-use sakura_persistence::{player_information::ItemInformation, Players};
-use sakura_proto::*;
+use mavuika_message::output::MessageOutput;
+use mavuika_persistence::{player_information::ItemInformation, Players};
+use mavuika_proto::*;
 
 pub struct PlayerDataSyncPlugin;
 

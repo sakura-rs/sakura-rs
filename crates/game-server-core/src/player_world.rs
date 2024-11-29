@@ -1,23 +1,23 @@
 use std::{collections::HashMap, fs};
 
 use bevy_app::prelude::*;
-use sakura_avatar::AvatarPlugin;
-use sakura_combat::CombatPlugin;
-use sakura_command::CommandPlugin;
-use sakura_entity::EntityPlugin;
-use sakura_environment::EnvironmentPlugin;
-use sakura_inventory::InventoryPlugin;
-use sakura_luashell::{LuaShellPlugin, LuaShellSettings};
-use sakura_map::MapPlugin;
-use sakura_message::{
+use mavuika_avatar::AvatarPlugin;
+use mavuika_combat::CombatPlugin;
+use mavuika_command::CommandPlugin;
+use mavuika_entity::EntityPlugin;
+use mavuika_environment::EnvironmentPlugin;
+use mavuika_inventory::InventoryPlugin;
+use mavuika_luashell::{LuaShellPlugin, LuaShellSettings};
+use mavuika_map::MapPlugin;
+use mavuika_message::{
     event::ClientMessageEvent,
     output::{ClientOutput, MessageOutput},
 };
-use sakura_pathfinding::PathfindingPlugin;
-use sakura_persistence::{player_information::PlayerInformation, Players};
-use sakura_proto::{PacketHead, PlayerLoginRsp};
-use sakura_scene::{common::WorldOwnerUID, ScenePlugin};
-use sakura_time::TimePlugin;
+use mavuika_pathfinding::PathfindingPlugin;
+use mavuika_persistence::{player_information::PlayerInformation, Players};
+use mavuika_proto::{PacketHead, PlayerLoginRsp};
+use mavuika_scene::{common::WorldOwnerUID, ScenePlugin};
+use mavuika_time::TimePlugin;
 use tracing::debug;
 
 use crate::player_data_sync::PlayerDataSyncPlugin;
@@ -65,7 +65,7 @@ impl PlayerWorld {
         app.update();
 
         output.push(
-            sakura_proto::PacketHead::default(),
+            mavuika_proto::PacketHead::default(),
             PlayerLoginRsp::default(),
         );
 

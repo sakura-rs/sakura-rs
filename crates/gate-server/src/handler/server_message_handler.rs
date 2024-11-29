@@ -1,4 +1,4 @@
-use sakura_proto::{
+use mavuika_proto::{
     packet::normal_to_client,
     raw_packet::{make_raw_packet, RawPacket},
 };

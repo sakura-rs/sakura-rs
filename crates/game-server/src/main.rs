@@ -4,9 +4,9 @@ use anyhow::Result;
 use common::{logging, TomlConfig};
 use config::GameServerConfig;
 use db_worker::DbWorkerHandle;
-use sakura_data::{config::load_configs_from_binary, excel};
-use sakura_network::{listener, ServerSocket};
 use game_server_core::LogicSimulator;
+use mavuika_data::{config::load_configs_from_binary, excel};
+use mavuika_network::{listener, ServerSocket};
 use tracing::Level;
 
 mod config;
@@ -30,8 +30,8 @@ async fn main() -> Result<()> {
     excel::load_all("assets/ExcelBinOutput")?;
     load_configs_from_binary("assets/BinOutput")?;
 
-    let db_connection = sakura_database::connect_to(&CONFIG.database).await?;
-    sakura_database::run_migrations(&db_connection).await?;
+    let db_connection = mavuika_database::connect_to(&CONFIG.database).await?;
+    mavuika_database::run_migrations(&db_connection).await?;
     let (db_handle, save_data_tx) = db_worker::start(db_connection);
 
     let gate_server_socket = ServerSocket::new(&CONFIG.gate_server_addr);

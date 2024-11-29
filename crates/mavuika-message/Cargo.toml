@@ -1,0 +1,10 @@
+[package]
+name = "mavuika-message"
+edition = "2021"
+version.workspace = true
+
+[dependencies]
+tokio.workspace = true
+bevy_ecs.workspace = true
+
+mavuika-proto.workspace = true

@@ -14,7 +14,7 @@ use common::{
     logging, TomlConfig,
 };
 use config::DispatchConfig;
-use sakura_encryption::{rsa::RsaKeyPair, xor::MhyXorpad};
+use mavuika_encryption::{rsa::RsaKeyPair, xor::MhyXorpad};
 use tracing::Level;
 
 struct AppState {

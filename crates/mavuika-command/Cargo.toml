@@ -1,0 +1,15 @@
+[package]
+name = "mavuika-command"
+edition = "2021"
+version.workspace = true
+
+[dependencies]
+bevy_app.workspace = true
+bevy_ecs.workspace = true
+tracing.workspace = true
+rand.workspace = true
+
+mavuika-data.workspace = true
+mavuika-scene.workspace = true
+mavuika-entity.workspace = true
+mavuika-persistence.workspace = true

@@ -2,9 +2,9 @@ use std::{collections::HashMap, thread};
 
 use crate::{command::LogicCommand, player_world::PlayerWorld};
 use common::time_util;
-use sakura_message::output::ClientOutput;
-use sakura_persistence::player_information::PlayerInformation;
-use sakura_proto::PacketHead;
+use mavuika_message::output::ClientOutput;
+use mavuika_persistence::player_information::PlayerInformation;
+use mavuika_proto::PacketHead;
 use std::sync::mpsc;
 
 #[derive(Clone)]

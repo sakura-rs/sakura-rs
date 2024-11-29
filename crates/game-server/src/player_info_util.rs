@@ -1,17 +1,17 @@
 use std::collections::HashMap;
 
 use common::time_util;
-use sakura_data::excel::{
+use mavuika_data::excel::{
     avatar_costume_excel_config_collection, avatar_excel_config_collection,
     avatar_flycloak_excel_config_collection, avatar_skill_depot_excel_config_collection,
     avatar_trace_effect_excel_config_collection, weapon_excel_config_collection, AvatarExcelConfig,
     AvatarUseType,
 };
 
-use sakura_persistence::player_information::*;
+use mavuika_persistence::player_information::*;
 
 pub fn create_default_player_information(uid: u32, nick_name: String) -> PlayerInformation {
-    const DEFAULT_TEAM: [u32; 1] = [10000058];
+    const DEFAULT_TEAM: [u32; 1] = [10000106];
     const DEFAULT_LEVEL: u32 = 60;
 
     let mut player = PlayerInformation {
@@ -52,12 +52,17 @@ pub fn create_default_player_information(uid: u32, nick_name: String) -> PlayerI
     player.avatar_module.team_map.insert(
         1,
         AvatarTeamInformation {
-            avatar_guid_list: player
-                .avatar_module
-                .avatar_map
+            avatar_guid_list: DEFAULT_TEAM
                 .iter()
-                .filter(|(_, av)| DEFAULT_TEAM.contains(&av.avatar_id))
-                .map(|(guid, _)| *guid)
+                .map(|id| {
+                    player
+                        .avatar_module
+                        .avatar_map
+                        .iter()
+                        .find(|(_, av)| av.avatar_id == *id)
+                        .map(|(guid, _)| *guid)
+                })
+                .flatten()
                 .collect(),
             name: String::new(),
         },

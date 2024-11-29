@@ -1,5 +1,5 @@
 [package]
-name = "sakura-gate-server"
+name = "mavuika-gate-server"
 edition = "2021"
 version.workspace = true
 
@@ -30,7 +30,7 @@ dashmap.workspace = true
 
 # Internal
 common.workspace = true
-sakura-database.workspace = true
-sakura-network.workspace = true
-sakura-encryption.workspace = true
-sakura-proto.workspace = true
+mavuika-database.workspace = true
+mavuika-network.workspace = true
+mavuika-encryption.workspace = true
+mavuika-proto.workspace = true

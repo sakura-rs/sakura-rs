@@ -9,7 +9,7 @@ use axum::Router;
 use common::{logging, TomlConfig};
 use config::SdkServerConfig;
 use handlers::{combo_granter, mdk_shield_api, register, risky_api};
-use sakura_database::DbConnection;
+use mavuika_database::DbConnection;
 use tracing::Level;
 
 #[derive(Clone)]
@@ -25,10 +25,10 @@ async fn main() -> Result<()> {
     logging::init(Level::DEBUG);
     let config = CONFIG.get_or_init(|| SdkServerConfig::load_or_create("sdk-server.toml"));
 
-    let database = sakura_database::connect_to(&config.database).await?;
+    let database = mavuika_database::connect_to(&config.database).await?;
     let database = DATABASE.get_or_init(move || database);
 
-    sakura_database::run_migrations(database).await?;
+    mavuika_database::run_migrations(database).await?;
 
     let app = Router::new()
         .merge(risky_api::routes())

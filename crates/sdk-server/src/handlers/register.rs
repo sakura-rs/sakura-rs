@@ -4,7 +4,7 @@ use axum::{
     routing::{get, post},
     Form, Router,
 };
-use sakura_database::{
+use mavuika_database::{
     data::{password, Password, Username},
     sql_op, DbError, SqlError,
 };

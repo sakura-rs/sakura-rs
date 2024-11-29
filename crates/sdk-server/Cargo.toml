@@ -1,5 +1,5 @@
 [package]
-name = "sakura-sdk-server"
+name = "mavuika-sdk-server"
 edition = "2021"
 version.workspace = true
 
@@ -20,4 +20,4 @@ rbase64.workspace = true
 tracing.workspace = true
 
 common.workspace = true
-sakura-database.workspace = true
+mavuika-database.workspace = true

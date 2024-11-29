@@ -1,4 +1,4 @@
-use sakura_proto::{
+use mavuika_proto::{
     packet::{self, combat_invocation_client_to_normal},
     CmdID, CombatInvocationsNotify, CombatInvokeEntry, Protobuf, UnionCmd, UnionCmdNotify,
 };

@@ -12,10 +12,10 @@ use common::{
 use config::GateServerConfig;
 use dashmap::DashMap;
 use handler::server_message_handler;
+use mavuika_database::DbConnection;
+use mavuika_encryption::{rsa::RsaKeyPair, xor::MhyXorpad};
+use mavuika_network::{listener, ServerSocket};
 use net::UdpServer;
-use sakura_database::DbConnection;
-use sakura_encryption::{rsa::RsaKeyPair, xor::MhyXorpad};
-use sakura_network::{listener, ServerSocket};
 use tracing::Level;
 
 mod config;
@@ -60,8 +60,8 @@ async fn main() -> Result<()> {
         None
     };
 
-    let db_connection = sakura_database::connect_to(&CONFIG.database).await?;
-    sakura_database::run_migrations(&db_connection).await?;
+    let db_connection = mavuika_database::connect_to(&CONFIG.database).await?;
+    mavuika_database::run_migrations(&db_connection).await?;
 
     let game_server_socket = ServerSocket::new(&CONFIG.game_server_addr);
 

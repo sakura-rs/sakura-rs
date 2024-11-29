@@ -1,14 +1,14 @@
 [
 	{
-		"name": "dev_sakura",
-		"title": "sakura-rs",
+		"name": "dev_mavuika",
+		"title": "mavuika-rs",
 		"type": "DEV_PUBLIC",
-		"bind_version_list": ["OSCBWin5.1.50"],
+		"bind_version_list": ["CNCBWin5.2.51"],
 		"channel_id": 1,
 		"sub_channel_id": 1,
-		"allowed_key_id_list": [5],
+		"allowed_key_id_list": [4, 5],
 		"dispatch_url": "http://127.0.0.1:21041/query_cur_region",
-		"dispatch_seed": "1c13a97958e26ea1",
+		"dispatch_seed": "8f84076e92333828",
 		"gateserver_ip": "127.0.0.1",
 		"gateserver_port": 22101,
 		"secret_key_path": "assets/region/client_secret_key.ec2b"
